@@ -10,6 +10,12 @@ $( document ).ready(function() {
                     $('#about_left').addClass('animated slideInLeft');
                     $('#about_right').addClass('animated slideInRight');
                     });
+		$("#projects").click(function(){
+                    $("#index").fadeOut();
+                    $("#projects_scroll").fadeIn();
+                    $('#projects_left').addClass('animated slideInLeft');
+                    $('#projects_right').addClass('animated slideInRight');
+                    });
                 $("#work").click(function(){
                     $("#index").fadeOut();
                     $("#work_scroll").fadeIn();
