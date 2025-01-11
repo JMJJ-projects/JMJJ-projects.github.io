@@ -1,6 +1,7 @@
 $( document ).ready(function() {
                 
-                $("#about_scroll").fadeOut();   
+                $("#about_scroll").fadeOut();
+		$("#projects_scroll").fadeOut();
                 $("#work_scroll").fadeOut();
                 $("#contact_scroll").fadeOut();
 
