@@ -35,6 +35,5 @@ $( document ).ready(function() {
                     $("#index").fadeIn();
                     $('#index_left').addClass('animated slideInLeft');
                     $('#index_right').addClass('animated slideInRight');
-                    });
-           
+                    });           
 		});

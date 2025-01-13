@@ -8,16 +8,25 @@ body{
 	background: #fff;
 }
 
-.home-description{
-	font-style: italic;
-	font-weight: 600;
-	font-family: "Crimson";
-	font-size: 19px;
-    padding-top: 15px;
-    padding-bottom: 25px;
-    line-height: 29px;
-
+#index_left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%; /* Full height */
 }
+
+.home-description {
+    font-style: italic;
+    font-weight: 600;
+    font-family: "Crimson";
+    font-size: 19px;
+    line-height: 29px;
+    margin: 0 auto; /* Center block text */
+    padding: 0; /* Remove left/right padding */
+}
+
 
 .social a i{
 	height: 40px;
@@ -28,44 +37,30 @@ body{
 	color: #111;
 	font-size: 20px;
 	padding-bottom: 20px;
+
 	}
 
 .social a:hover i{
-	color: #fff;
+
 	border-color: #bb9e7d;
 	background-color: #bb9e7d;
 	}
 
+.social a img{
+	vertical-align: top;
+	border: 1px solid #111;
+	height: 40px;
+	width: 40px;
+	padding-top: 9px;
+	padding-bottom: 7px;
+	}
 
-@media (min-width: 778px)
-{
-		.main{
-			height: 100vh;
-			overflow: scroll;
-		}
+.social a:hover img{
+	color: #FFFFFF;
+	border-color: #bb9e7d;
+	background-color: #bb9e7d;
+	}
 
-		.img-rabbit{
-			/*margin: 0 -15px;*/
-		}
-
-		.btn-group-vertical{
-    		padding: 20px 87.5px;
-    	}
-
-    	.info{
-			font-family: "Crimson";
-			line-height: 28px;
-		    font-size: 16px;
-		    padding-top: 15px;
-		    padding-right: 50px;
-		}
-		
-		.home-description{
-			padding-right: 90px;
-			padding-left: 90px;
-			
-		}
-}
 .img-rabbit{
 	width: 100%;
 }
@@ -80,6 +75,17 @@ body{
 	font-family: "Crimson";
 	font-size: 13px;
 	}
+.rabbit-copy{
+	background-color: #fff;
+	color: #111;
+	font-style: italic;
+	border: 1px solid #111;
+	border-radius: 0px !important;
+	transition: all 0.4s ease-in-out;
+	margin-bottom: 20px;
+	font-family: "Crimson";
+	font-size: 13px;
+}
 
 .btn-rabbit:hover{
 	color: #fff;
@@ -306,6 +312,43 @@ footer{
 		height: auto;
 	}
 }
+@media (max-width: 720px) {
+    #index_left {
+        padding: 20px;
+        text-align: center; /* Ensure centering for smaller screens */
+    }
+}
+
+@media (min-width: 720px)
+{
+		.main{
+			height: auto;
+			overflow: scroll;
+		}
+
+		.img-rabbit{
+			/*margin: 0 -15px;*/
+		}
+
+		.btn-group-vertical{
+    		padding: 20px 87.5px;
+    	}
+
+    	.info{
+			font-family: "Crimson";
+			line-height: 28px;
+		    font-size: 16px;
+		    padding-top: 15px;
+		    padding-right: 50px;
+		}
+		
+		.home-description{
+			padding-right: 90px;
+			padding-left: 90px;
+			
+		}
+}
+
 .custom_btn{
   -vendor-animation-duration: 3s;
   -vendor-animation-delay: 2s;
