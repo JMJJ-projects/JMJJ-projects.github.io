@@ -1,0 +1,403 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@100..900&display=swap');
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center;
+    background-color: black;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    background-color: #333;
+    width: 100%;
+    padding: 10px 20px; 
+}
+.navigation .logo {
+    height: 40px;
+    object-fit: contain;
+}
+
+.navigation a {
+    color: #bd0a0a;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    filter: brightness(200%)
+}
+.navigation a.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.navigation a:not(.disabled) {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.navigation a:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.navigation a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-grow: 1;
+    background-color: black;
+    user-select: none;
+    
+}
+
+.game {
+    position: relative;
+    background-image: url("Images/backgroung_game1.gif"); 
+    background-size: cover;
+    background-position: center;
+    margin-top: 40px;
+    width: 90%; 
+    height: 500px;
+    border: 2px solid #e5d5d5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-image 0.5s cubic-bezier(0.4, 0, 1, 1);
+    user-select: none;
+    pointer-events: none;
+}
+
+.player {
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    bottom: 0px; 
+    left: -2%;
+    user-select: none;
+    pointer-events: none;
+}
+.indicator {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    bottom: 120px;
+    left: 350px;
+    user-select: none;
+    pointer-events: none;
+}
+
+.enemy {
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    top: 80px; 
+    right: -5%;
+    user-select: none;
+    pointer-events: none;
+}
+
+@keyframes moveForward {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-700px); 
+    }
+  }
+/*La seul chose que j'ai changé au dessus c'est le .html, .body {height:100%;). En bas c'est nouveau*/
+
+.game-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-grow: 1;
+    background-color: black;
+}
+
+#gameover-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*filter: sepia(0.2) hue-rotate(300deg);*/
+    z-index: 10;
+}
+.gameover-content {
+    background: #222;
+    border: 3px solid #bd0a0a;
+    border-radius: 10px;
+    padding: 40px 60px;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 0 30px #000;
+}
+.gameover-content h1 {
+    font-family: 'Grenze Gotisch', cursive;
+    font-size: 2.5rem;
+    text-shadow: 0 0 15px #bd0a0a;
+}
+#restart-btn {
+    margin-top: 20px;
+    padding: 12px 30px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    background: #bd0a0a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+    box-shadow: 0 5px 15px rgba(189, 10, 10, 0.5);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+#restart-btn:hover {
+    background: #8a0707;
+}
+
+#tutorial-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+}
+
+.tutorial-content {
+    background: #222;
+    border: 3px solid #bd0a0a;
+    border-radius: 10px;
+    padding: 40px 60px;
+    text-align: left;
+    color: #fff;
+    box-shadow: 0 0 30px #000;
+    max-width: 50%;
+}
+
+.tutorial-content h2 {
+    color: #bd0a0a;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.tutorial-content ul {
+    margin-bottom: 30px;
+    padding-left: 20px;
+    list-style: disc;
+}
+
+#close-tutorial-btn {
+    display: block;
+    margin: 0 auto;
+    padding: 12px 30px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    background: #bd0a0a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+#close-tutorial-btn:hover {
+    background: #8a0707;
+}
+
+.tutorial-content ul li {
+    margin-bottom: 16px;
+}
+
+#score-display {
+    top: 20px;
+    left: 20px;
+    color: #fff;
+    font-size: 24px;
+}
+
+
+h3 {
+    margin-top: 16px;
+}
+p {
+    margin-bottom: 16px;
+}
+
+#main {
+    min-height: auto;
+    margin : 0 ;
+    padding: 0 ;
+    box-sizing: border-box ;
+    font-family: system-ui, sans-serif;
+    font-size: 1rem;
+    line-height: 1.7;
+    display: none;
+}
+
+#widget {
+    position: relative;
+    width: 80vw;
+    max-width: 1100px;
+    min-width: 300px;
+    padding: 1rem;
+    margin: 1rem auto;
+    border-radius: 1rem;    
+    background-color: #3d3c3c;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.025);
+    z-index: 2;
+}
+
+
+#tab-content {
+    padding: 1rem;
+    background: black;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+.container img {
+    width: 250px;
+    height: auto;
+    margin: 0 20px;
+}
+
+.container .text {
+    text-align: center;
+}
+.container .arrow {
+    font-size : 2em;
+    cursor: pointer;
+    user-select: none;
+    color: #bd0a0a;
+}
+.arrow:hover {
+    color : rgb(155, 0, 0);
+}
+
+#tab-content h1 {
+    color: #e60000;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5rem;
+}
+#tab-content p , #tab-content li {
+    color: #9c0606;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    font-family: 'Grenze Gotisch'
+}
+
+#tab-content h3{
+    color: #9c0606;
+    font-family: 'MedievalSharp', cursive;
+    font-size: 1.3rem;
+
+}
+#tab-content li {
+    margin-left: 20px;
+}
+#perso-nom{
+    color: #9c0606;
+    font-family: 'MedievalSharp', cursive;
+    font-size: 2.5rem;
+}
+
+#gallery-container {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 10px;
+    position: relative;
+}
+#gallery-image {
+    width: auto;
+    height: 500px;
+    border: 2px solid #444;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+#next-btn, #prev-btn {
+    background-color: transparent;
+    border: transparent;
+}
+
+#next-btn img, #prev-btn img {
+    width: 90px;
+    height: auto;
+}
+#gallery-container h2 {
+    color: #9c0606;
+    font-family: "MedievalSharp";
+    font-size: 2.5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    
+}
+
+.parry-window {
+    border : 2px solid yellow;
+    box-shadow:  0 0 10px yellow;
+}
+
+@media (max-width: 1000px) {
+    .player {
+        height:250px;
+        width: 250px;
+        left: 2%;
+    }
+    .enemy {
+        height:250px;
+        width: 250px;
+        top:300px;
+        right: 2%;
+    }
+    .indicator {
+        height: 20px;
+        width: 20px;
+    }
+    #gallery-image {
+        width:60%
+    }
+    .container {
+        flex-direction: column;
+    }
+
+    .container img {
+        margin: 0 auto 20px auto; /* center image, add bottom spacing */
+    }
+
+    .container .text {
+        text-align: center;
+        padding: 0 10px; /* optional: avoid touching screen edges */
+    }
+}
