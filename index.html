@@ -1,64 +1,523 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
+    
     <head>
-        <link rel="stylesheet" href="style.css">
-        <meta charset="UTF-8">
-        <title>Struggle</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            John-Michael JENY JEYARAJ
+        </title>
+        <link rel="icon" type="image/icon" href="assets/images/tabicon.ico">
+        <link rel="stylesheet" type="text/css" href="assets/css/main">
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700,700i" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,700,700i" rel="stylesheet">
+	<link href="assets/css/main.css" rel="stylesheet">
+        <link rel="icon" href="assets/images/logo.png">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     </head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SF90G37B4T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SF90G37B4T');
+</script>
+
     <body>
-        <div class="navigation">
-            <img src="Images/logo.png" alt="Logo" class="logo">
-            <a href="#Presentation-wiki" id="Presentation" class="disabled">Presentation</a>
-            <a href="#Personnages-wiki" id="Personnages" class="disabled">Personnages</a>
-            <a href="#Histoire-wiki" id="Histoire" class="disabled">Histoire</a>
-            <a href="#Informations-wiki" id="Informations" class="disabled">Informations</a>
-        </div>
-
-        <div class="game-container">
-            <div id="tutorial-overlay">
-                <div class="tutorial-content">
-                  <h2>Tutoriel</h2>
-                  <ul>
-                    <li>Attendez que le démon s'approche</li>
-                    <li>Appuyez <strong>F</strong> pour parer son attaque</li>
-                    <li>Après avoir paré, appuyez <strong>R</strong> pour le tuer</li>
-                    <li>À certains scores, vous débloquerez des sections du site</li>
-                  </ul>
-                  <button id="close-tutorial-btn">Commencer</button>
+        <!-- Index starts here -->
+        <div id="index">
+            <div class="container main">
+                <div class="row home">
+                    <div id="index_left" class="col-md-6 left">
+                        <div class="logo">
+                            <img src="assets/images/logo.png" alt="Logo">
+                            <h4>
+                                Currently seeking an internship for May 2025 or an apprenticeship for Sept 2025
+                            </h4>
+                        </div>
+                        <p class="home-description">
+                            Hi, I am John-Michael JENY JEYARAJ, Computer Science student from France.
+                            I am passionate about cloud, AI and cybersecurity. I'm proficient in data
+                            structures, algorithms, networks, and data analysis.
+                        </p>
+                        <div class="btn-group-vertical custom_btn animated slideinright">
+                            <div id="about" class="btn btn-rabbit">
+                                About
+                            </div>
+                            <div id="projects" class="btn btn-rabbit">
+                                Projects
+                            </div>
+                            <div id="work" class="btn btn-rabbit">Work</div>
+                            <div id="contact" class="btn btn-rabbit">
+                                Contact
+                            </div>
+                        </div>
+                        <div class="social">
+                            <a href="mailto:johnjenyjeyaraj@gmail.com">
+                                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/gmail.svg" alt="gmail">
+                            </a>
+                            <a href="https://www.linkedin.com/in/jmjj/">
+                                <i class="fa fa-linkedin" aria-hidden="true">
+                                </i>
+                            </a>
+                        </div>
+                    </div>
+                    <div id="index_right" class="col-md-6 text-center right">
+                        <img class="img-responsive img-rabbit" src="assets/images/John_Main.jpg" alt="Main Image">
+                    </div>
                 </div>
-            </div>     
-
-            <div class="game">
-                <p id="score-display"> Score: 0 </p>
-                <img src="Player/idle.gif" alt="Player" id="player" class="player">
-                <img src="Ennemos/NightBorne-run-unscreen.gif" alt="Enemy" id="enemy" class="enemy">
-                <img src="Player/noindicator.png" alt="indicator" id="indicator" class="indicator">
             </div>
-
-            <div id="gameover-overlay" style="display:none;">
-                <div class="gameover-content">
-                <h1>Game Over</h1>
-                <p id="final-score"></p>
-                <button id="restart-btn">Restart</button>
+        </div>
+        <!-- index ends here -->
+        <!-- about starts here -->
+        <div id="about_scroll" class="pages ">
+            <div class="container main">
+                <div class="row">
+                    <div class="col-md-6 left" id="about_left">
+                        <a href="#index" class="btn btn-rabbit back">
+                            <i class="fa fa-angle-left" aria-hidden="true">
+                            </i>
+                            Back to home
+                        </a>
+                        <div class="watermark">
+                            <h2 class="page-title">
+                                About
+                            </h2>
+                        </div>
+                        <p class='subtitle'>
+                            "Success is not final, failure is not fatal: it is the courage to continue
+                            that counts." – Winston Churchill
+                        </p>
+                        <p class="info">
+                            Hi, I'm John-Michael. I used to say I was passionate about tech, but as
+                            I learnt more and more about the world of technology, I realised that I
+                            was spreading myself too thin. My interest in the cloud industry began
+                            when my father asked me to safely store his photos, videos, and contacts.
+                            I was impressed by how easy it was to set up and use. It sparked my desire
+                            to help develop similar applications that enable people to safely keep
+                            their precious memories and other important documents. I became interested
+                            in AI, because it's the new hot thing! Despite its controversial nature,
+                            it's genuinely fascinating seeing the rapid advancement of such cutting-edge
+                            technology. Finally, my interest in cybersecurity stems not only from seeing
+                            frequent reports of large-scale hacks in the news, but also from personal
+                            experience — I was targeted once when I was younger. Since then, I’ve made
+                            it a priority to read up on and follow basic security principles.
+                        </p>
+                        <p class="info">
+                            During my time at Computer City, I gained hands-on experience in troubleshooting
+                            and repairing a wide range of computer hardware and software issues. I
+                            became proficient in diagnosing and fixing faulty components in both PCs
+                            and laptops, including performing upgrades and repairs on motherboards,
+                            hard drives, and RAM. One of my key achievements was successfully recovering
+                            systems with broken BIOS and performing fresh installations of Windows
+                            on machines that had completely failed. Additionally, I handled troubleshooting
+                            of network - related issues, such as firewalls and VPN configurations,
+                            helping customers resolve connectivity problems. This knowledge has remained 
+			    valuable over the years, and I continue to apply it by repairing and restoring
+                            old laptops as a personal hobby. Feel free to explore my Work page to see
+                            examples of my hands-on experience.
+                        </p>
+                        <p class="info">
+                            During my time at university, I have become proficient in programming
+                            languages such as Python, C, Java, and SQL, applying these skills in academic
+                            projects, problem-solving, and algorithm optimization. I’ve built a strong
+                            foundation in algorithms and data structures, utilizing sorting, searching,
+                            graph traversal, and optimization techniques like dynamic programming and
+                            backtracking to solve complex problems. My understanding of data structures
+                            — such as arrays, linked lists, stacks, queues, and trees — has enabled
+                            me to design efficient and scalable solutions. Networking is another area
+                            where I’ve gained hands-on experience, including knowledge of protocols
+                            like TCP/IP, VPNs, and firewalls. I've also learnt how to develop web applications
+                            using HTML, CSS, and Javascript. My familiarity with the Linux CLI and
+                            Git has allowed me to work effectively in collaborative environments, streamlining
+                            workflows and version control.
+                        </p>
+                        <p class="info">
+                            Outside of my technical pursuits, I enjoy activities that challenge both
+                            my mind and creativity. I was an avid chess player and a member of a club
+                            for 3 years. Currently my passion lies in tabletop role-playing games,
+                            where exploring the creative and imaginative world crafted by my DM gives
+                            me a thrill I had never quite experienced before. I particularly love the
+                            storytelling and world-building aspects, although I'm no slouch in the
+                            strategic and number crunching sides of the game. When I visit my parents,
+                            I enjoy tending to their vegetable and flower garden with my father. It’s
+                            a relaxing activity that gives us a chance to bond and catch up while enjoying
+                            the outdoors.
+                        </p>
+                    </div>
+                    <div class="col-md-6 right" id="about_right">
+                        <img class="img-responsive img-rabbit" src="assets/images/John_Photo.png" alt="John Photo">
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <div id="main"></div>
-
-        <div id='gallery-container'>
-            <button id='prev-btn'>
-                <img src="Images/left.png" alt="left">
-            </button>
-            <img id='gallery-image' src="Player/noindicator.png" alt='Image débloquée'>
-                <h2>BONUS</h2>
-            <button id='next-btn'>
-                <img src="Images/right.png" alt="right">
-            </button>
+        <!-- About ends here -->
+        <!-- Projects starts here -->
+        <div id="projects_scroll" class="pages">
+            <div class="container main">
+                <div class="row">
+                    <div class="col-md-6" id="projects_left">
+                        <a href="#index" class="btn btn-rabbit back">
+                            <i class="fa fa-angle-left">
+                            </i>
+                            Back to Home
+                        </a>
+                        <div class="watermark">
+                            <h2 class="page-title">
+                                Projects
+                            </h2>
+                        </div>
+                        <p class='subtitle'>
+                            This is a selection of the software development projects I've been working
+                            on:
+                        </p>
+                        <p>
+                            <b>
+                                Customer Analysis Dashboard
+                            </b>
+                        </p>
+                        <p class="info">
+                            A Python and SQL application for generating data insights and visualizations
+                            for small businesses. Employees of the business must first login to access
+                            the 'sensitive' (currently just a sample) data. The users can filter through
+                            data of their customers, respond to complaints clients might've made from
+                            a client facing application, and even analyse the behaviours of their customers.
+                            <br>
+                            <a href="https://github.com/JMJJ-projects/Customer-Analysis-Dashboard">
+                                View on GitHub
+                            </a>
+                        </p>
+                        <br>
+                        <p>
+                            <b>
+                                Wikicomptine
+                            </b>
+                        </p>
+                        <p class="info">
+                            An application in C, establishing a stable connection between a server
+                            and clients. It allows users to store their documents on a central server.
+                            The central server, which hosts the files, is scalable due to implementation
+                            of semaphores. Clients can edit and add to these files, and changes are
+                            reflected in real time. Careful use of data structures enables the application
+                            to run smoothly.
+                            <br>
+                            <a href="https://github.com/JMJJ-projects/Wikicomptine">
+                                View on GitHub
+                            </a>
+                        </p>
+                        <br>
+                        <p>
+                            <b>
+                                The Knapsack Problem
+                            </b>
+                        </p>
+                        <p class="info">
+                            An application in C, which at first was to figure out how to program an
+                            optimal solution for the Knapsack problem. It later evolved into comparing
+                            the solutions to the 0/1 Knapsack Problem. Comparing different methods
+                            of programming and plotting them on a graph highlights the difference of
+                            each algorithm. Currently comparing basic dynamic programming (dp), dp
+                            based on the minimum weight, dp based on the value, and a greedy algorithm.
+                            <br>
+                            <a href="https://github.com/JMJJ-projectss/Optimising-Algorithms-For-The-Knapsack-Problem">
+                                View on GitHub
+                            </a>
+                        </p>
+                        <br>
+                        <p>
+                            <b>
+                                2x2x4 Tower Cube Simulator
+                            </b>
+                        </p>
+                        <p class="info">
+                            A C program simulating a 2x2x4 Tower Cube puzzle, complete with algorithms
+                            for solving. Using an innovative idea for representing the transformative
+                            nature of the cube, this program can be coupled with a visualiser to make
+                            one of the first proper Tower Cube Simulator on the internet.
+                            <br>
+                            <a href="https://github.com/JMJJ-projects/2x2x4-Tower-Cube-Simulator">
+                                View on GitHub
+                            </a>
+                        </p>
+                        <br>
+                        <p>
+                            <b>
+                                Cloud File Manager
+                            </b>
+                            (Work in Progress)
+                        </p>
+                        <p class="info">
+                            A web-based tool for managing files securely on AWS S3. Features planned
+                            include user authentication, encryption, and file versioning.
+                        </p>
+                    </div>
+                    <div class="col-md-6" id="projects_right">
+                        <br style="line-height:16;">
+                        <div class="owl-demo"> 
+				<div class="owl-carousel owl-theme">
+                            		<div class="item">
+                                		<img src="assets/images/CAD_image.png" class="img-responsive" alt="Project 1 Screenshot">
+                            		</div>
+                            		<div class="item">
+                                		<img src="assets/images/Server_image.png" class="img-responsive" alt="Project 2 Screenshot">
+                            		</div>
+                            		<div class="item">
+                                		<img src="assets/images/Knapsack_image.png" class="img-responsive" alt="Project 3 Screenshot">
+                            		</div>
+                            		<div class="item">
+                                		<img src="assets/images/Tower_image.png" class="img-responsive" alt="Project 4 Screenshot">
+                            		</div>
+				</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <script src="script.js"></script>
+        <!-- Projects ends here -->
+	<!-- Work starts here -->
+        <div id="work_scroll" class="pages">
+            <div class="container main">
+                <div class="row">
+                    <div class="col-md-6" id="work_left">
+                        <a href="#index" class="btn btn-rabbit back">
+                            <i class="fa fa-angle-left">
+                            </i>
+                            Back to Home
+                        </a>
+                        <div class="watermark">
+                            <h2 class="page-title">
+                                Work
+                            </h2>
+                        </div>
+                        <p class='subtitle'>
+                            This is a selection of the laptops and PCs I've been working. Please feel free to contact me if you would be interested in buying one of the available ones!
+                        </p>
+                        <p>
+                            <b>
+                                HP EliteBook 8440p - Available!
+                            </b>
+                        </p>
+                        <div class="info">
+                            <ul>
+				<li><strong>Processor:</strong> Intel Core i7-620M</li>
+				<li><strong>RAM:</strong> 6GB</li>
+				<li><strong>Storage:</strong> 256GB SSD (SATA)</li>
+				<li><strong>Graphics:</strong> Intel Integrated Graphics</li>
+				<li><strong>Display:</strong> 14" (1366 x 768)</li>
+				<li><strong>Ports:</strong> Ethernet, VGA, USB (3x), DVD</li>
+				<li><strong>Weight:</strong> 2.1kg</li>
+				<li><strong>Operating System:</strong> Windows 11 Home</li>
+				<li><strong>Pack Office:</strong> yes</li>
+				<li><strong>Accessories:</strong> Original charger and carrying case</li>
+				<li><strong>Condition:</strong> Good</li>
+				<li><strong>Price:</strong> €250 - To be negotiated!</li>
+			    </ul>
+                        </div>
+                        <p>
+                            <b>
+                                Dell Latitude E5430 - Available!
+                            </b>
+                        </p>
+                        <div class="info">
+                            <ul>
+				<li><strong>Processor:</strong> Intel Core i5-3340M</li>
+				<li><strong>RAM:</strong> 8GB</li>
+				<li><strong>Storage:</strong> 512GB SSD (SATA)</li>
+				<li><strong>Graphics:</strong> Intel Integrated Graphics</li>
+				<li><strong>Display:</strong> 14.1" HD - LED (1600 x 900)</li>
+				<li><strong>Ports:</strong> USB (2x), VGA HD-15, HDMI, SD Card Reader, ethernet, headphone jack</li>
+				<li><strong>Weight:</strong> 2.04kg</li>
+				<li><strong>Operating System:</strong> Windows 11 Home</li>
+				<li><strong>Pack Office:</strong> yes</li>
+				<li><strong>Accessories:</strong> Original charger and carrying case</li>
+				<li><strong>Condition:</strong> Excellent</li>
+				<li><strong>Price:</strong> €350 - To be negotiated!</li>
+			    </ul>
+                        </div>
+                        <p>
+                            <b>
+                                Dell Latitude E5430 - Available!
+                            </b>
+                        </p>
+                        <div class="info">
+                            <ul>
+				<li><strong>Processor:</strong> Intel Core i5-3340M</li>
+				<li><strong>RAM:</strong> 8GB</li>
+				<li><strong>Storage:</strong> 256GB SSD (SATA)</li>
+				<li><strong>Graphics:</strong> Intel Integrated Graphics</li>
+				<li><strong>Display:</strong> 14.1" HD - LED (1600 x 900)</li>
+				<li><strong>Ports:</strong> USB (2x), VGA HD-15, HDMI, SD Card Reader, ethernet, headphone jack</li>
+				<li><strong>Weight:</strong> 2.04kg</li>
+				<li><strong>Operating System:</strong> Windows 11 Home</li>
+				<li><strong>Pack Office:</strong> yes</li>
+				<li><strong>Accessories:</strong> Excellent</li>
+				<li><strong>Condition:</strong> Original charger and carrying case</li>
+				<li><strong>Price:</strong> €300 - To be negotiated!</li>
 
-        
+
+			    </ul>
+                        </div>
+                        <p>
+                            <b>
+                                HP Envy x360-13ay0021nf - No longer available! Sorry!
+                            </b>
+                        </p>
+                        <div class="info">
+                            <ul>
+				<li><strong>Processor:</strong> AMD Ryzen 4700U</li>
+				<li><strong>RAM:</strong> 16GB</li>
+				<li><strong>Storage:</strong> 512GB SSD (NVMe)</li>
+				<li><strong>Graphics:</strong> Radeon Integrated Graphics</li>
+				<li><strong>Display:</strong> 13.3" FHB+ (1920 x 1080) - touchscreen</li>
+				<li><strong>Ports:</strong> Micro SD card reader, USB-C, USB (2x), headphone jack</li>
+				<li><strong>Weight:</strong> 1.32kg</li>
+				<li><strong>Operating System:</strong> Windows 11 Home and Ubuntu 22.04.4 LTS</li>
+				<li><strong>Pack Office:</strong> yes</li>
+				<li><strong>Accessories:</strong> Original charger, carrying case, mouse, and stylus</li>
+				<li><strong>Condition:</strong> Good</li>
+				<li><strong>Final Price:</strong> €500</li>
+			    </ul>
+                        </div>
+                        <p>
+                            <b>
+                                Dell Latitude E5430 - No longer available! Sorry!
+                            </b>
+                        </p>
+                        <div class="info">
+                            <ul>
+				<li><strong>Processor:</strong> Intel Core i5-3340M</li>
+				<li><strong>RAM:</strong> 4GB</li>
+				<li><strong>Storage:</strong> 256GB SSD (SATA)</li>
+				<li><strong>Graphics:</strong> Intel Integrated Graphics</li>
+				<li><strong>Display:</strong> 14.1" HD - LED (1600 x 900)</li>
+				<li><strong>Ports:</strong> USB (2x), VGA HD-15, HDMI, SD Card Reader, ethernet, headphone jack</li>
+				<li><strong>Weight:</strong> 2.04kg</li>
+				<li><strong>Operating System:</strong> Windows 11 Home</li>
+				<li><strong>Pack Office:</strong> yes</li>
+				<li><strong>Accessories:</strong> Original charger and carrying case</li>
+				<li><strong>Condition:</strong> Poor</li>
+				<li><strong>Final Price:</strong> €125</li>
+			    </ul>
+                        </div>
+                        <p>
+                            <b>
+                                ACER Nitro AN515-57 - No longer available! Sorry!
+                            </b>
+                        </p>
+                        <div class="info">
+                            <ul>
+				<li><strong>Processor:</strong> Intel Core i5-11400H</li>
+				<li><strong>RAM:</strong> 16 GB</li>
+				<li><strong>Storage:</strong> 512GB SSD (NVMe)</li>
+				<li><strong>Graphics:</strong> Geforce RTX 3050</li>
+				<li><strong>Display:</strong> 15.6" FHD+ (1920 x 1080), IPS</li>
+				<li><strong>Ports:</strong> HDMI, USB (x3), USB-C, ethernet, headphone jack</li>
+				<li><strong>Weight:</strong> 2.2kg</li>
+				<li><strong>Operating System:</strong> Windows 11 Home and Ubuntu 22.04.4 LTS</li>
+				<li><strong>Pack Office:</strong> yes</li>
+				<li><strong>Accessories:</strong> Headset, mouse, original charger and carrying case</li>
+				<li><strong>Condition:</strong> Good</li>
+				<li><strong>Final Price:</strong> £800</li>
+			    </ul>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6" id="work_right">
+                        <br style="line-height:22;">
+                        <div class="owl-demo"> 
+				<div class="owl-carousel owl-theme">
+                            		<div class="item">
+                                		<img class="img-responsive img-rabbit" src="assets/images/HP_Elitebook.jpg" alt="HP Elitebook">
+                            		</div>
+                           		<div class="item">
+                               			<img class="img-responsive img-rabbit" src="assets/images/Dell_Latitude3.jpg" alt="Dell Latitude 3">
+                            		</div>
+                            		<div class="item">
+                             		   <img class="img-responsive img-rabbit" src="assets/images/Dell_Latitude2.jpg" alt="Dell Latitude 2">
+                            		</div>
+                            		<div class="item">
+                            		    <img class="img-responsive img-rabbit" src="assets/images/HP_ENVYx360.jpg" alt="HP ENVY x360">
+                            		</div>
+                            		<div class="item">
+                             		   <img class="img-responsive img-rabbit" src="assets/images/Dell_Latitude1.jpg" alt="Dell Latitude 1">
+                            		</div>
+                           		<div class="item">
+                            		    <img class="img-responsive img-rabbit" src="assets/images/Acer_Nitro15.jpg" alt ="ACER Nitro5">
+                            		</div>
+				</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Work ends here -->
+        <!-- Contact starts here -->
+        <div id="contact_scroll" class="pages">
+            <div class="container main">
+                <div class="row">
+                    <div class="col-md-6 left" id="contact_left">
+                        <a href="#index" class="btn btn-rabbit back">
+                            <i class="fa fa-angle-left" aria-hidden="true">
+                            </i>
+                            Back to Home
+                        </a>
+                        <div class="watermark">
+                            <h2 class="page-title">
+                                Contact
+                            </h2>
+                        </div>
+                        <p class='subtitle'>
+                            I'm based in La Courneuve, France. Please feel free to contact me for
+                            any offers or even if you just want to chat!
+                        </p>
+                        <!-- form -->
+                        <form action="https://api.web3forms.com/submit" method="POST">
+                            <input type="text" class="form-control" name="exampleInputName" placeholder="Name">
+                            <input type="email" class="form-control" name="exampleInputEmail1" placeholder="Email">
+                            <textarea class="form-control" rows="5" name="message" placeholder="Message">
+                            </textarea>
+                            <br>
+                            <button type="submit" class="btn rabbit-copy submit">
+                                Send Message
+                            </button>
+                            <input type="hidden" name="access_key" value="b455eb2f-b4c4-41b6-8768-8fa880cd0574">
+                        </form>
+                    </div>
+                    <div class="col-md-6 right" id="contact_right">
+                        <img class="img-responsive img-rabbit" src="assets/images/contact.jpg" alt="contacts">
+                    </div>
+                </div>
+            </div>
+            <footer class="text-center">
+                <div class="container bottom">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p>
+                                Made with
+                                <i class="fa fa-heartbeat" aria-hidden="true">
+                                </i>
+                                by
+                                <a href="https://themewagon.com/">
+                                    Themewagon
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <!-- Contact ends here -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+        </script>
+        <script src="assets/js/bootstrap.min.js">
+        </script>
+        <script src="assets/js/script.js">
+        </script>
     </body>
+
 </html>
