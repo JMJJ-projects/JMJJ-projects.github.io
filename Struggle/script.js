@@ -170,7 +170,7 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
-document.getElementById('game-container').addEventListener('touchstart', function(e) {
+document.getElementById('game').addEventListener('touchstart', function(e) {
     if(touch === false && !hasParried && !isGameOver && !(state === "hurt")){
         touch = true;
         failSound.currentTime = 0;
