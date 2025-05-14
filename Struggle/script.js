@@ -1,3 +1,5 @@
+/*Ce travaille a été effectué par JENY JEYARAJ John-Michael & PARAKARAN Vidur*/
+
 const player = document.getElementById("player");
 const enemy = document.getElementById("enemy");
 const indicator = document.getElementById("indicator");
@@ -43,6 +45,7 @@ let hasParried = false;
 let canAttack = false;
 let isGameOver = false;
 let attackTimeout;
+let touch = false;
 
 function playRandomParrySound() {
     const randomIndex = Math.floor(Math.random() * paradeSound.length);
@@ -138,6 +141,54 @@ document.addEventListener("keydown", (e) => {
     }
 
     if ((e.key === "R" || e.key === "r") && canAttack && !isGameOver) {
+        player.src = playerAttackGif + "?" + new Date().getTime();
+        enemySound.pause();
+        attackSound.pause();
+        attackSound.currentTime = 0;
+        attackSound.play();
+        state = "dead"
+        enemy.src = enemyDeathGif + "?" + new Date().getTime();
+        setTimeout(() => {
+            setTimeout(() => {
+                enemy.style.display = "none";
+                player.src = playerIdleGif + "?" + new Date().getTime();
+                respawnEnemy();
+            },1000)
+        },300)
+
+        canAttack = false;
+        if (score < 400 ){
+            score += 40;
+        }
+        else if (score >= 400) {
+            score +=20;
+        }
+        updateBG(score);
+        document.getElementById("score-display").innerHTML = "Score : " + score;
+        state = "dead";
+        clearTimeout(attackTimeout);
+    }
+});
+
+document.getElementById('game-container').addEventListener('touchstart', function(e) {
+    if(touch === false && !hasParried && !isGameOver && !(state === "hurt")){
+        touch = true;
+        failSound.currentTime = 0;
+        failSound.play();
+        player.src = playerParadeGif + "?" + new Date().getTime();
+        hasParried = true;
+        setTimeout(() => {
+            if(!isGameOver && !(state === "dead")){
+                player.src = playerIdleGif + "?" + new Date().getTime();
+            }
+        }, 400);
+        setTimeout(() => {
+            hasParried = false;
+            touch = false;
+        },275);
+    }
+    if (touch === true && canAttack && !isGameOver) {
+        touch = false;
         player.src = playerAttackGif + "?" + new Date().getTime();
         enemySound.pause();
         attackSound.pause();
@@ -292,7 +343,7 @@ const personnages = [
     },
 
     {
-        img : "https://www.anime-colors.com/wp-content/uploads/griffith.png",
+        img : "https://i.pinimg.com/736x/ad/7f/89/ad7f89734f1014b8a2aa904ff0328136.jpg",
         nom : "GRIFFITH",
         desc1 : "Griffith est le charismatique chef de la Troupe du Faucon, une bande de mercenaires redoutables. Grâce à ses talents stratégiques, il enchaîne les victoires et grimpe rapidement les échelons, jusqu'à être anobli et promu général. Sa rencontre avec Guts, un guerrier exceptionnel, change la dynamique du groupe. Après l'avoir vaincu dans un duel, il l'intègre à la troupe et en fait le chef de la cavalerie. ",
         desc2 : "Mais quand Guts quitte la troupe après l’avoir battu en duel, Griffith perd le contrôle. Il est arrêté par le roi pour sa relation avec la princesse et subit une année entière de torture. Sauvé trop tard, brisé physiquement et mentalement, il active le Béhélit rouge. C’est l’Éclipse. Pour accomplir son rêve de royaume parfait, il sacrifie la Troupe du Faucon. Tous meurent, sauf Guts et Casca — qui paient un prix atroce : Guts perd un bras, Casca perd la raison, et Griffith renaît en tant que Femto, membre de la God Hand, vidé de toute humanité."
@@ -341,7 +392,7 @@ const personnages = [
     },
 
     {
-        img : "https://pnganime.com/web/image-thumbnails/110/452-md.png",
+        img : "https://i.pinimg.com/736x/7d/ac/82/7dac825502a6f257167e80c449ec31a3.jpg",
         nom : "CHEVALIER SQUELETTE",
         desc1 : "Guerrier spectral en croisade contre le destin, il sauva Guts, Casca et Rickert de l’Éclipse avant de disparaître dans les ombres.",
         desc2 : ""
@@ -374,9 +425,9 @@ function precedent() {
     afficherPersonnage();
 }
 
-const bonusImage = ["bonus/bonus1.jpg", "bonus/bonus2.jpg", "bonus/bonus3.jpg", "bonus/bonus4.jpg",
-    "bonus/bonus5.jpg","bonus/bonus6.jpg","bonus/bonus7.jpg","bonus/bonus8.jpg","bonus/bonus9.jpg","bonus/bonus10.jpg","bonus/bonus11.jpg","bonus/bonus12.jpg"
-    ,"bonus/bonus13.jpg","bonus/bonus14.jpg", "bonus/bonus15.jpg"
+const bonusImage = ["Bonus/bonus1.jpg", "Bonus/bonus2.jpg", "Bonus/bonus3.jpg", "Bonus/bonus4.jpg",
+    "Bonus/bonus5.jpg","Bonus/bonus6.jpg","Bonus/bonus7.jpg","Bonus/bonus8.jpg","Bonus/bonus9.jpg","Bonus/bonus10.jpg","Bonus/bonus11.jpg","Bonus/bonus12.jpg"
+    ,"Bonus/bonus13.jpg","Bonus/bonus14.jpg", "Bonus/bonus15.jpg"
 ];
 let idx = 0;
 
@@ -408,4 +459,4 @@ document.getElementById("next-btn").addEventListener("click", () => {
         idx = (idx + 1) % ulC;
         document.getElementById("gallery-image").src = bonusImage[idx];
     }
-});
+}); 
