@@ -14,6 +14,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/site.css">
+  <script>
+    // Apply saved theme/language before first paint to avoid a flash.
+    (function () {
+      var get = function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } };
+      var theme = get("theme");
+      if (theme === "dark" || theme === "light") document.documentElement.setAttribute("data-theme", theme);
+      var q = new URLSearchParams(location.search).get("lang");
+      var lang = q || get("lang") || ((navigator.language || "en").toLowerCase().indexOf("fr") === 0 ? "fr" : "en");
+      document.documentElement.lang = lang === "fr" ? "fr" : "en";
+    })();
+  </script>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SF90G37B4T"></script>
@@ -25,17 +36,24 @@
   </script>
 </head>
 <body>
-  <a class="skip" href="#projects">Skip to projects</a>
+  <a class="skip" href="#projects" data-i18n="skip">Skip to projects</a>
 
   <header class="nav">
     <div class="wrap nav-inner">
       <a class="brand" href="#top"><img src="assets/images/logo.png" alt="" width="28" height="28"><span>JMJJ</span></a>
       <nav aria-label="Main">
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <a href="#hardware">Hardware</a>
-        <a href="#contact">Contact</a>
+        <a href="#projects" data-i18n="nav.projects">Projects</a>
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#hardware" data-i18n="nav.hardware">Hardware</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
       </nav>
+      <div class="toggles">
+        <button id="lang-toggle" class="toggle" type="button" aria-label="Passer en français" title="Français">FR</button>
+        <button id="theme-toggle" class="toggle" type="button" aria-label="Toggle dark mode" title="Dark mode">
+          <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+          <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v3M12 19.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1.5 12h3M19.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -45,12 +63,12 @@
       <div class="hero-text">
         <p class="status"><span class="dot" aria-hidden="true"></span><span id="status"></span></p>
         <h1>John-Michael<br>Jeny Jeyaraj</h1>
-        <p class="lead">Computer science Master's student specialising in <strong>computer &amp; network systems</strong>.
+        <p class="lead" data-i18n="hero.lead">Computer science Master's student specialising in <strong>computer &amp; network systems</strong>.
           I build things across <strong>security</strong>, <strong>cloud</strong> and <strong>machine learning</strong>,
           and I like understanding systems all the way down, from compilers to formal verification.</p>
         <div class="cta">
-          <a class="btn primary" href="#projects">See my projects</a>
-          <a class="btn" href="mailto:johnjenyjeyaraj@gmail.com">Get in touch</a>
+          <a class="btn primary" href="#projects" data-i18n="hero.cta1">See my projects</a>
+          <a class="btn" href="mailto:johnjenyjeyaraj@gmail.com" data-i18n="hero.cta2">Get in touch</a>
         </div>
         <ul class="socials" aria-label="Links">
           <li><a href="https://github.com/JMJJ-projects" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg></a></li>
@@ -67,13 +85,13 @@
     <section id="projects" class="section">
       <div class="wrap">
         <header class="section-head">
-          <p class="eyebrow">Selected work</p>
-          <h2>Featured projects</h2>
+          <p class="eyebrow" data-i18n="proj.eyebrow">Selected work</p>
+          <h2 data-i18n="proj.featured">Featured projects</h2>
         </header>
         <div id="featured" class="featured"></div>
 
         <header class="section-head all-head">
-          <h2>More projects</h2>
+          <h2 data-i18n="proj.more">More projects</h2>
           <div id="filters" class="filters" role="tablist" aria-label="Filter projects"></div>
         </header>
         <div id="grid" class="grid"></div>
@@ -84,29 +102,29 @@
     <section id="about" class="section alt">
       <div class="wrap about">
         <div class="about-text">
-          <p class="eyebrow">About</p>
-          <h2>Hi, I'm John-Michael.</h2>
-          <blockquote>“Success is not final, failure is not fatal: it is the courage to continue that counts.” — Winston Churchill</blockquote>
-          <p>I used to say I was passionate about “tech”, until I realised I was spreading myself too thin. Three areas stuck.
+          <p class="eyebrow" data-i18n="about.eyebrow">About</p>
+          <h2 data-i18n="about.title">Hi, I'm John-Michael.</h2>
+          <blockquote data-i18n="about.quote">“Success is not final, failure is not fatal: it is the courage to continue that counts.” — Winston Churchill</blockquote>
+          <p data-i18n="about.p1">I used to say I was passionate about “tech”, until I realised I was spreading myself too thin. Three areas stuck.
             <strong>Cloud</strong>: it started when my father asked me to store his photos and contacts safely, and I wanted to build that kind of tool myself.
             <strong>AI</strong>: watching such fast progress up close is genuinely fascinating.
             <strong>Cybersecurity</strong>: I was targeted by an attack when I was younger, and I've taken security seriously ever since.</p>
-          <p>I did my Licence in computer science at Université Sorbonne Paris Nord (two years of it as a double degree with mathematics)
+          <p data-i18n="about.p2">I did my Licence in computer science at Université Sorbonne Paris Nord (two years of it as a double degree with mathematics)
             and I'm now doing a Master's in Computer &amp; Network Systems at Université d'Évry Paris-Saclay.
             I went to secondary school in the UK, so I work comfortably in English and French.</p>
-          <p>At Computer City I diagnosed and repaired PCs and laptops: motherboards, drives, RAM, broken BIOSes, fresh Windows installs,
+          <p data-i18n="about.p3">At Computer City I diagnosed and repaired PCs and laptops: motherboards, drives, RAM, broken BIOSes, fresh Windows installs,
             plus firewall and VPN troubleshooting for customers. I still refurbish old laptops as a hobby (see below).</p>
-          <p>Outside computing: I played competitive chess in a club for three years, and these days I'm hooked on tabletop role-playing games,
+          <p data-i18n="about.p4">Outside computing: I played competitive chess in a club for three years, and these days I'm hooked on tabletop role-playing games,
             for both the storytelling and the number-crunching. When I visit my parents, I tend their vegetable garden with my father.</p>
         </div>
         <aside class="skills" aria-label="Skills">
           <img class="about-photo" src="assets/images/John_Photo.png" alt="John-Michael" width="418" height="640" loading="lazy">
-          <h3>Languages</h3>
+          <h3 data-i18n="skills.lang">Languages</h3>
           <ul class="chips"><li>Python</li><li>C</li><li>Java</li><li>SQL</li><li>JavaScript</li><li>HTML/CSS</li></ul>
-          <h3>Tools &amp; frameworks</h3>
+          <h3 data-i18n="skills.tools">Tools &amp; frameworks</h3>
           <ul class="chips"><li>Flask</li><li>scikit-learn</li><li>XGBoost</li><li>PyTorch</li><li>pandas</li><li>JavaCC</li><li>Docker</li><li>Git</li><li>Linux</li><li>GitHub Actions</li></ul>
-          <h3>Fundamentals</h3>
-          <ul class="chips"><li>Algorithms &amp; data structures</li><li>Networks (TCP/IP, VPN, firewalls)</li><li>Applied cryptography</li><li>Formal verification</li><li>UML &amp; Scrum</li></ul>
+          <h3 data-i18n="skills.fund">Fundamentals</h3>
+          <ul class="chips" data-i18n="skills.fundlist"><li>Algorithms &amp; data structures</li><li>Networks (TCP/IP, VPN, firewalls)</li><li>Applied cryptography</li><li>Formal verification</li><li>UML &amp; Scrum</li></ul>
         </aside>
       </div>
     </section>
@@ -115,9 +133,9 @@
     <section id="hardware" class="section">
       <div class="wrap">
         <header class="section-head">
-          <p class="eyebrow">Hands-on</p>
-          <h2>Hardware repair &amp; refurbishing</h2>
-          <p class="muted">Laptops I've diagnosed, repaired and set up. Some are for sale: <a href="mailto:johnjenyjeyaraj@gmail.com?subject=Laptop">email me</a> if one interests you (prices negotiable).</p>
+          <p class="eyebrow" data-i18n="hw.eyebrow">Hands-on</p>
+          <h2 data-i18n="hw.title">Hardware repair &amp; refurbishing</h2>
+          <p class="muted" data-i18n="hw.intro">Laptops I've diagnosed, repaired and set up. Some are for sale: <a href="mailto:johnjenyjeyaraj@gmail.com?subject=Laptop">email me</a> if one interests you (prices negotiable).</p>
         </header>
         <div id="hardware-grid" class="hw-grid"></div>
       </div>
@@ -127,8 +145,8 @@
   <footer id="contact" class="footer">
     <div class="wrap footer-inner">
       <div>
-        <h2>Let's talk</h2>
-        <p class="muted">Internship offers, questions about a project, or one of the laptops: get in touch.</p>
+        <h2 data-i18n="footer.title">Let's talk</h2>
+        <p class="muted" data-i18n="footer.text">Internship offers, questions about a project, or one of the laptops: get in touch.</p>
       </div>
       <div class="footer-links">
         <a class="btn primary" href="mailto:johnjenyjeyaraj@gmail.com">johnjenyjeyaraj@gmail.com</a>
@@ -144,7 +162,9 @@
     <div id="dlg-body"></div>
   </dialog>
 
+  <script src="assets/js/i18n.js"></script>
   <script src="assets/js/projects.js"></script>
+  <script src="assets/js/projects.fr.js"></script>
   <script src="assets/js/site.js"></script>
 </body>
 </html>
