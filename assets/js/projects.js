@@ -14,6 +14,26 @@ window.PORTFOLIO = {
 
   projects: [
     {
+      id: "cve-triage",
+      featured: true,
+      title: "CVE Triage Agent",
+      subtitle: "LLM agent for vulnerability triage",
+      year: "2026",
+      context: "Personal project · solo",
+      categories: ["security", "ai"],
+      image: "assets/images/projects/cve-triage.jpg",
+      summary:
+        "A LangGraph agent that takes a CVE ID, a vulnerability description or a code snippet and returns a structured triage decision (severity, route, advisory fix). NVD data takes precedence over LLM guesses, untrusted input is never executed, and it runs fully offline.",
+      highlights: [
+        "8-node graph: classify input → enrich from NVD → LLM extraction → resolve severity → alert, human review or archive",
+        "Safety by design: a cited CVE can raise severity but never lower it, MEDIUM goes to a human, and failures fall back to review",
+        "Hardened against prompt injection: input is wrapped as untrusted data, nothing is executed, SQL is parameterised",
+        "177 tests, ruff + mypy --strict in CI, and an honest evaluation on 35 labelled items (80% correct routing, every miss an over-escalation)",
+      ],
+      tech: ["Python", "LangGraph", "LangChain", "Pydantic", "SQLite", "NVD API"],
+      links: [{ label: "Code", url: "https://github.com/JMJJ-projects/cve-triage-agent" }],
+    },
+    {
       id: "stockagecloud",
       featured: true,
       title: "StockageCloud",
@@ -44,7 +64,8 @@ window.PORTFOLIO = {
       year: "2026",
       context: "M1 research project (TER) · team of 3",
       categories: ["research", "systems"],
-      image: "assets/images/projects/ctl-onthefly.jpg",
+      image: "assets/images/projects/ctl-poster.jpg",
+      tall: true,
       summary:
         "An algorithm that checks temporal-logic (CTL) properties on acyclic Kripke structures while generating states on demand, so it can stop as soon as the answer is known instead of building the whole state space.",
       highlights: [
@@ -54,7 +75,10 @@ window.PORTFOLIO = {
         "C implementation with lazy state loading and caching that confirms the theoretical results",
       ],
       tech: ["C", "CTL", "Model checking", "Formal methods"],
-      links: [{ label: "Code", url: "https://github.com/MaTCoTT/TER" }],
+      links: [
+        { label: "Poster", url: "projects/ctl/poster.pdf" },
+        { label: "Code", url: "https://github.com/MaTCoTT/TER" },
+      ],
     },
     {
       id: "kaggle",
