@@ -14,6 +14,30 @@ window.PORTFOLIO = {
 
   projects: [
     {
+      id: "sim-agent",
+      featured: true,
+      title: "Simulation Agent",
+      subtitle: "Natural language → sandboxed simulation code",
+      year: "2026",
+      context: "Personal project · solo",
+      categories: ["ai", "security"],
+      image: "assets/images/projects/sim-agent.jpg",
+      gallery: ["assets/images/projects/sim-agent-results.png"],
+      summary:
+        "Ask a question about a particle-transport simulation in plain language: the agent writes the Python code, runs it in a locked-down Docker sandbox, and repairs it from the error output when it fails. Runs on small local models (4 GB of VRAM) or hosted ones, and is exposed as an MCP server.",
+      highlights: [
+        "Benchmark on 36 tasks: the repair loop took a local 3B model from 7/36 to 20/36, a one-line prompt fix reached 23/36 single-shot, and gpt-oss-120b solved 36/36",
+        "Two security layers: a static allow-list on the generated code, then a Docker sandbox with no network, a read-only filesystem and resource limits, proven by 16 isolation tests",
+        "MCP server exposing the simulator, the sandbox and the agent as tools, tested with a real MCP client",
+        "Monte Carlo simulator built on NIST attenuation data and validated against Beer–Lambert; 404 tests and CI on Linux",
+      ],
+      tech: ["Python", "LangGraph", "Ollama", "Docker", "MCP", "NumPy"],
+      links: [
+        { label: "Code", url: "https://github.com/JMJJ-projects/sim-agent" },
+        { label: "Benchmark results", url: "https://github.com/JMJJ-projects/sim-agent/blob/main/docs/eval_results.md" },
+      ],
+    },
+    {
       id: "cve-triage",
       featured: true,
       title: "CVE Triage Agent",

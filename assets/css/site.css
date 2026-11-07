@@ -214,3 +214,5 @@ blockquote { margin: 0 0 18px; padding-left: 16px; border-left: 3px solid var(--
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; scroll-behavior: auto !important; }
 }
+
+dialog img.gallery { border-top: 1px solid var(--line); border-bottom: 0; padding: 12px; background: #fff; }

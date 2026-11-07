@@ -18,6 +18,7 @@ edumind/                   live demo of the EduMind prototype
 Struggle/                  the STRUGGLE browser game
 ```
 
+After changing CSS/JS, bump the `?v=` number on its link in `index.html` so phones fetch the new file.
 To add a project, copy an entry in `assets/js/projects.js` (and add its French text in `projects.fr.js`), drop a 1200×700 image in
 `assets/images/projects/`, and push.
 
