@@ -1,0 +1,801 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plateforme Académique - Dashboard</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.8.12/tailwind-experimental.min.css'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+</head>
+<body class="flex bg-gray-100 min-h-screen">
+    <!-- Login Page -->
+    <div id="login-page" class="flex items-center justify-center min-h-screen w-full absolute bg-gray-100">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+            <h2 class="text-2xl font-semibold text-purple-600 text-center mb-6">Connexion Étudiant</h2>
+            <input type="text" id="username" placeholder="Identifiant (ex: 1220001)" class="w-full border p-3 rounded-lg mb-4 focus:bg-gray-50" required>
+            <input type="password" id="password" placeholder="Mot de passe" class="w-full border p-3 rounded-lg mb-4 focus:bg-gray-50" required>
+            <button onclick="login()" class="w-full bg-purple-600 text-white p-3 rounded-lg hover:bg-purple-500">Se connecter</button>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="hidden w-full">
+        <!-- Sidebar -->
+        <aside class="hidden sm:flex sm:flex-col">
+            <a href="#" class="inline-flex items-center justify-center h-20 w-20 bg-purple-600 hover:bg-purple-500">
+                <svg fill="none" viewBox="0 0 64 64" class="h-12 w-12">
+                    <path d="M32 14.2c-8 0-12.9 4-14.9 11.9 3-4 6.4-5.6 10.4-4.5 2.3.6 4 2.3 5.7 4 2.9 3 6.3 6.4 13.7 6.4 7.9 0 12.9-4 14.8-11.9-3 4-6.4 5.5-10.3 4.4-2.3-.5-4-2.2-5.7-4-3-3-6.3-6.3-13.7-6.3zM17.1 32C9.2 32 4.2 36 2.3 43.9c3-4 6.4-5.5 10.3-4.4 2.3.5 4 2.2 5.7 4 3 3 6.3 6.3 13.7 6.3 8 0 12.9-4 14.9-11.9-3 4-6.4 5.6-10.4 4.5-2.3-.6-4-2.3-5.7-4-2.9-3-6.3-6.4-13.7-6.4z" fill="#fff"/>
+                </svg>
+            </a>
+            <div class="flex-grow flex flex-col justify-between text-gray-500 bg-gray-800">
+                <nav class="flex flex-col mx-4 my-6 space-y-4">
+                    <a href="#" id="exams-nav" onclick="showSection('exams')" class="inline-flex items-center justify-center py-3 text-purple-600 bg-purple-300 rounded-lg">
+                        <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                    </a>
+                    <a href="#" id="grades-nav" onclick="showSection('grades')" class="inline-flex items-center justify-center py-3 hover:text-gray-400 hover:bg-gray-700 rounded-lg">
+                        <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </a>
+                    <a href="#" id="messages-nav" onclick="showSection('messages')" class="inline-flex items-center justify-center py-3 hover:text-gray-400 hover:bg-gray-700 rounded-lg">
+                        <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </a>
+                </nav>
+                <div class="inline-flex items-center justify-center h-20 w-20 border-t border-gray-700">
+                    <button onclick="logout()" class="p-3 hover:text-gray-400 hover:bg-gray-700 rounded-lg">
+                        <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex-grow text-gray-800">
+            <!-- Header -->
+            <header class="flex items-center h-20 px-6 sm:px-10 bg-white">
+                <button class="block sm:hidden relative flex-shrink-0 p-2 mr-2 text-gray-600 hover:bg-gray-100 rounded-full">
+                    <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
+                    </svg>
+                </button>
+                <div class="relative w-full max-w-md sm:-ml-2">
+                    <svg aria-hidden="true" viewBox="0 0 20 20" fill="currentColor" class="absolute h-6 w-6 mt-2.5 ml-2 text-gray-400">
+                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
+                    </svg>
+                    <input type="text" placeholder="Rechercher..." class="py-2 pl-10 pr-4 w-full border-4 border-transparent placeholder-gray-400 focus:bg-gray-50 rounded-lg"/>
+                </div>
+                <div class="flex flex-shrink-0 items-center ml-auto">
+                    <button class="inline-flex items-center p-2 hover:bg-gray-100 rounded-lg">
+                        <div class="hidden md:flex md:flex-col md:items-end md:leading-tight">
+                            <span id="user-name" class="font-semibold">Utilisateur</span>
+                            <span class="text-sm text-gray-600">Étudiant</span>
+                        </div>
+                        <span class="h-12 w-12 ml-2 sm:ml-3 mr-2 bg-gray-100 rounded-full overflow-hidden">
+                            <img src="https://cdn-icons-png.flaticon.com/512/3541/3541871.png" alt="user profile photo" class="h-full w-full object-cover">
+                        </span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Main Sections -->
+            <main class="p-6 sm:p-10 space-y-6">
+                <!-- Examens Section -->
+                <section id="exams" class="section block">
+                    <div class="flex flex-col space-y-6">
+                        <h1 class="text-3xl font-semibold mb-2">Examens à venir</h1>
+                    </div>
+                    <div class="bg-white shadow rounded-lg p-6">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Matière</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="exams-table-body" class="bg-white divide-y divide-gray-200">
+                                    <tr data-subject="Mathématiques">
+                                        <td class="px-6 py-4 whitespace-nowrap">Mathématiques</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">07/05/2025</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">En ligne</td>
+                                        <td class="px-6 py-4 whitespace-nowrap exam-action">
+                                            <a href="#" onclick="startExam('Mathématiques')" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-500">Passer l'examen</a>
+                                        </td>
+                                    </tr>
+                                    <tr data-subject="Physique">
+                                        <td class="px-6 py-4 whitespace-nowrap">Physique</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">20/05/2025</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Présentiel</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Exam Quiz Section -->
+                <section id="exam-quiz" class="section hidden">
+                    <div class="flex flex-col space-y-6">
+                        <h1 id="exam-title" class="text-3xl font-semibold mb-2">Examen</h1>
+                    </div>
+                    <div class="bg-white shadow rounded-lg p-6">
+                        <div id="quiz-container">
+                            <!-- Questions will be dynamically inserted here -->
+                        </div>
+                        <button onclick="submitExam()" class="mt-6 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-500">Soumettre l'examen</button>
+                        <button onclick="backToExams()" class="mt-2 bg-gray-300 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-400">Retour</button>
+                    </div>
+                </section>
+
+                <!-- Notes Section -->
+                <section id="grades" class="section hidden">
+                    <div class="flex flex-col space-y-6">
+                        <h1 class="text-3xl font-semibold mb-2">Mes Notes</h1>
+                    </div>
+                    <div class="bg-white shadow rounded-lg p-6">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Matière</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Note</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Commentaire</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">Génie Logiciel</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">8/10</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Bon travail</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">Probabilité</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">7/10</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">À approfondir</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">Base de Données</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">6.5/10</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Efforts nécessaires</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">Automates</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">7.5/10</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Bonne maîtrise</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">Compilation</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">6/10</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">À améliorer</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">TEC</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">8/10</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Très satisfaisant</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">Anglais</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">7.5/10</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Bonne maîtrise</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">Calculabilité</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">6.5/10</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Efforts nécessaires</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">Web Sémantique</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">8.5/10</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">Excellent</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mt-6">
+                            <h3 class="text-xl font-semibold">Analyse de performance</h3>
+                            <p class="text-gray-500">Moyenne générale: 7.28/10</p>
+                            <p class="text-gray-500">Tendance: Stable</p>
+                            <button onclick="generateGradesAnalysis()" class="mt-4 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-500">Analyse des Notes</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Messagerie Section -->
+                <section id="messages" class="section hidden">
+                    <div class="flex flex-col space-y-6">
+                        <h1 class="text-3xl font-semibold mb-2">Messagerie</h1>
+                    </div>
+                    <div class="bg-white shadow rounded-lg p-6">
+                        <!-- Inbox View -->
+                        <div id="inbox-view" class="block">
+                            <h3 class="text-xl font-semibold mb-4">Boîte de réception</h3>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Correspondant</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dernier message</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="inbox-table-body" class="bg-white divide-y divide-gray-200">
+                                        <!-- Conversations will be dynamically inserted here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <button onclick="showNewMessageForm()" class="mt-4 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-500">Nouveau message</button>
+                        </div>
+                        <!-- Conversation View -->
+                        <div id="conversation-view" class="hidden">
+                            <button onclick="backToInbox()" class="mb-4 text-purple-600 hover:text-purple-500">← Retour à la boîte de réception</button>
+                            <h3 id="conversation-title" class="text-xl font-semibold mb-4"></h3>
+                            <div id="conversation-messages" class="border rounded-lg p-4 bg-gray-50 min-h-[300px] max-h-[400px] overflow-y-auto">
+                                <!-- Messages will be dynamically inserted here -->
+                            </div>
+                            <div class="mt-4">
+                                <textarea id="reply-content" placeholder="Votre réponse..." class="w-full border p-3 rounded-lg mb-4 focus:bg-gray-50 min-h-[100px]"></textarea>
+                                <button onclick="sendReply()" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-500">Envoyer</button>
+                            </div>
+                        </div>
+                        <!-- New Message Form -->
+                        <div id="new-message-view" class="hidden">
+                            <button onclick="backToInbox()" class="mb-4 text-purple-600 hover:text-purple-500">← Retour à la boîte de réception</button>
+                            <h3 class="text-xl font-semibold mb-4">Nouveau Message</h3>
+                            <select id="recipient" class="w-full border p-3 rounded-lg mb-4 focus:bg-gray-50">
+                                <!-- Options will be dynamically inserted -->
+                            </select>
+                            <textarea id="message-content" placeholder="Votre message..." class="w-full border p-3 rounded-lg mb-4 focus:bg-gray-50 min-h-[100px]"></textarea>
+                            <button onclick="sendMessage()" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-500">Envoyer</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Hidden Canvas for Chart -->
+                <canvas id="gradesChart" style="display: none;"></canvas>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Simulated user database
+        const users = {
+            "1220001": { name: "Sophie DUPONT", id: "1220001" },
+            "1220002": { name: "Lucas MARTIN", id: "1220002" },
+            "1220003": { name: "Emma LEBLANC", id: "1220003" },
+            "1220004": { name: "Thomas MOREAU", id: "1220004" },
+            "1220005": { name: "Chloé RENAUD", id: "1220005" },
+            "1220006": { name: "Hugo GIRARD", id: "1220006" },
+            "1220007": { name: "Léa FONTAINE", id: "1220007" },
+            "1220008": { name: "Antoine LEMAIRE", id: "1220008" },
+            "1220009": { name: "Camille BERNARD", id: "1220009" }
+        };
+
+        // Simulated message storage
+        let messages = [];
+
+        // Store current user and current conversation
+        let currentUser = null;
+        let currentConversationPartnerId = null;
+        let isExamActive = false;
+
+        // Sample exam questions (10 questions, 1 point each)
+        const examQuestions = {
+            "Mathématiques": [
+                {
+                    question: "Quelle est la dérivée de f(x) = x² ?",
+                    options: ["2x", "x", "x²", "2"],
+                    correct: "2x"
+                },
+                {
+                    question: "Quelle est la valeur de π (approximative) ?",
+                    options: ["3.14", "2.71", "1.41", "4.00"],
+                    correct: "3.14"
+                },
+                {
+                    question: "Quelle est l'intégrale de 2x dx ?",
+                    options: ["x² + C", "2x² + C", "x + C", "2x + C"],
+                    correct: "x² + C"
+                },
+                {
+                    question: "Quelle est la solution de x² - 4 = 0 ?",
+                    options: ["x = ±2", "x = ±4", "x = 2", "x = 4"],
+                    correct: "x = ±2"
+                },
+                {
+                    question: "Quel est le cosinus de 0° ?",
+                    options: ["1", "0", "-1", "1/2"],
+                    correct: "1"
+                },
+                {
+                    question: "Quelle est la factorisation de x² - 9 ?",
+                    options: ["(x-3)(x+3)", "(x-9)(x+9)", "(x-3)²", "(x+3)²"],
+                    correct: "(x-3)(x+3)"
+                },
+                {
+                    question: "Quelle est la dérivée de f(x) = sin(x) ?",
+                    options: ["cos(x)", "-sin(x)", "-cos(x)", "sin(x)"],
+                    correct: "cos(x)"
+                },
+                {
+                    question: "Quel est le résultat de 2³ ?",
+                    options: ["8", "6", "9", "4"],
+                    correct: "8"
+                },
+                {
+                    question: "Quelle est la pente de la droite y = 3x + 2 ?",
+                    options: ["3", "2", "-3", "1"],
+                    correct: "3"
+                },
+                {
+                    question: "Quelle est l'aire d'un cercle de rayon 2 ?",
+                    options: ["4π", "2π", "8π", "π"],
+                    correct: "4π"
+                }
+            ]
+        };
+
+        // Store exam completion status and grades
+        let examStatus = {
+            "Mathématiques": { completed: false, grade: null }
+        };
+
+        // Login simulation
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username in users && password) {
+                currentUser = users[username];
+                document.getElementById('user-name').textContent = currentUser.name;
+                document.getElementById('login-page').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'flex';
+                updateExamsTable();
+                showSection('exams'); // Set default section to exams
+            } else {
+                alert('Identifiant ou mot de passe incorrect');
+            }
+        }
+
+        // Logout
+        function logout() {
+            currentUser = null;
+            currentConversationPartnerId = null;
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('login-page').style.display = 'flex';
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        }
+
+        // Show specific section and update sidebar
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById(sectionId).classList.remove('hidden');
+
+            // Update sidebar navigation
+            const navItems = {
+                'exams': document.getElementById('exams-nav'),
+                'grades': document.getElementById('grades-nav'),
+                'messages': document.getElementById('messages-nav')
+            };
+
+            // Reset all nav items
+            for (const id in navItems) {
+                navItems[id].classList.remove('text-purple-600', 'bg-purple-300', 'bg-green-300', 'bg-blue-300');
+                navItems[id].classList.add('hover:text-gray-400', 'hover:bg-gray-700');
+            }
+
+            // Apply active styles
+            if (sectionId === 'exams' || sectionId === 'exam-quiz') {
+                navItems['exams'].classList.remove('hover:text-gray-400', 'hover:bg-gray-700');
+                navItems['exams'].classList.add('text-purple-600', 'bg-purple-300');
+            } else if (sectionId === 'grades') {
+                navItems['grades'].classList.remove('hover:text-gray-400', 'hover:bg-gray-700');
+                navItems['grades'].classList.add('text-purple-600', 'bg-green-300');
+            } else if (sectionId === 'messages') {
+                navItems['messages'].classList.remove('hover:text-gray-400', 'hover:bg-gray-700');
+                navItems['messages'].classList.add('text-purple-600', 'bg-blue-300');
+                updateMessagesSection();
+            }
+        }
+
+        // Update exams table based on exam status
+        function updateExamsTable() {
+            const tableBody = document.getElementById('exams-table-body');
+            const rows = tableBody.querySelectorAll('tr');
+            rows.forEach(row => {
+                const subject = row.getAttribute('data-subject');
+                const actionCell = row.querySelector('.exam-action');
+                if (examStatus[subject] && examStatus[subject].completed) {
+                    actionCell.innerHTML = `<span class="text-gray-800">Note: ${examStatus[subject].grade.toFixed(1)}/10</span>`;
+                } else if (subject === "Mathématiques") {
+                    actionCell.innerHTML = `<a href="#" onclick="startExam('${subject}')" class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-500">Passer l'examen</a>`;
+                }
+            });
+        }
+
+        // Start exam
+        function startExam(subject) {
+            if (examStatus[subject] && examStatus[subject].completed) {
+                alert('Vous avez déjà passé cet examen.');
+                return;
+            }
+
+            document.getElementById('exam-title').textContent = `Examen: ${subject}`;
+            const questions = examQuestions[subject] || [];
+            const quizContainer = document.getElementById('quiz-container');
+            quizContainer.innerHTML = '';
+
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'mb-6';
+                questionDiv.innerHTML = `
+                    <p class="text-lg font-semibold mb-2">${index + 1}. ${q.question}</p>
+                    ${q.options.map(option => `
+                        <label class="block mb-2">
+                            <input type="radio" name="question-${index}" value="${option}" class="mr-2">
+                            ${option}
+                        </label>
+                    `).join('')}
+                `;
+                quizContainer.appendChild(questionDiv);
+            });
+
+            // Start monitoring for tab change
+            isExamActive = true;
+            document.addEventListener('visibilitychange', handleTabChange);
+
+            showSection('exam-quiz');
+        }
+
+        // Handle tab change during exam
+        function handleTabChange() {
+            if (isExamActive && document.visibilityState === 'hidden') {
+                const subject = document.getElementById('exam-title').textContent.replace('Examen: ', '');
+                examStatus[subject] = { completed: true, grade: 0 };
+                isExamActive = false;
+                document.removeEventListener('visibilitychange', handleTabChange);
+                alert('Examen annulé pour suspicion de triche (changement d\'onglet détecté). Note: 0/10');
+                updateExamsTable();
+                showSection('exams');
+            }
+        }
+
+        // Submit exam
+        function submitExam() {
+            const subject = document.getElementById('exam-title').textContent.replace('Examen: ', '');
+            const questions = examQuestions[subject];
+            let score = 0;
+
+            questions.forEach((q, index) => {
+                const selectedOption = document.querySelector(`input[name="question-${index}"]:checked`);
+                if (selectedOption && selectedOption.value === q.correct) {
+                    score++;
+                }
+            });
+
+            const total = questions.length;
+            examStatus[subject] = { completed: true, grade: score };
+            isExamActive = false;
+            document.removeEventListener('visibilitychange', handleTabChange);
+            alert(`Vous avez obtenu ${score}/${total} (${score.toFixed(1)}/10)`);
+            updateExamsTable();
+            showSection('exams');
+        }
+
+        // Back to exams
+        function backToExams() {
+            isExamActive = false;
+            document.removeEventListener('visibilitychange', handleTabChange);
+            showSection('exams');
+        }
+
+        // Generate grades analysis
+        function generateGradesAnalysis() {
+            console.log("generateGradesAnalysis called for user:", currentUser.name); // Debug log
+            const grades = [
+                { subject: "Génie Logiciel", score: 8, comment: "Bon travail" },
+                { subject: "Probabilité", score: 7, comment: "À approfondir" },
+                { subject: "Base de Données", score: 6.5, comment: "Efforts nécessaires" },
+                { subject: "Automates", score: 7.5, comment: "Bonne maîtrise" },
+                { subject: "Compilation", score: 6, comment: "À améliorer" },
+                { subject: "TEC", score: 8, comment: "Très satisfaisant" },
+                { subject: "Anglais", score: 7.5, comment: "Bonne maîtrise" },
+                { subject: "Calculabilité", score: 6.5, comment: "Efforts nécessaires" },
+                { subject: "Web Sémantique", score: 8.5, comment: "Excellent" }
+            ];
+
+            const average = grades.reduce((sum, g) => sum + g.score, 0) / grades.length;
+
+            // Create chart
+            const ctx = document.getElementById('gradesChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: grades.map(g => g.subject),
+                    datasets: [{
+                        label: 'Notes (/10)',
+                        data: grades.map(g => g.score),
+                        backgroundColor: 'rgba(128, 0, 128, 0.6)',
+                        borderColor: 'rgba(128, 0, 128, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 10,
+                            title: {
+                                display: true,
+                                text: 'Note'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Matière'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Résultats par Matière'
+                        }
+                    }
+                }
+            });
+
+            // Wait for chart to render, then generate PDF
+            setTimeout(() => {
+                const chartImage = ctx.canvas.toDataURL('image/png');
+
+                // Destroy chart to free memory
+                chart.destroy();
+
+                // Generate PDF
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                let y = 20;
+
+                // Title
+                doc.setFontSize(16);
+                doc.text(`Analyse des Notes - ${currentUser.name}`, 20, y);
+                y += 10;
+
+                // Average
+                doc.setFontSize(12);
+                doc.text(`Moyenne générale: ${average.toFixed(2)}/10`, 20, y);
+                y += 10;
+
+                // Grades
+                doc.text("Résumé des performances:", 20, y);
+                y += 10;
+                grades.forEach(g => {
+                    doc.text(`- ${g.subject}: ${g.score}/10 (${g.comment})`, 20, y);
+                    y += 10;
+                });
+
+                // Advice
+                doc.text("Conseils personnalisés:", 20, y);
+                y += 10;
+                const advice = average >= 8
+                    ? "Vous montrez une excellente maîtrise globale. Continuez à maintenir ce niveau d'excellence et explorez des sujets avancés pour approfondir vos connaissances, notamment en Web Sémantique où vous excellez."
+                    : average >= 6
+                    ? "Votre performance est stable, mais il y a des opportunités d'amélioration. Concentrez-vous sur les matières comme Compilation et Base de Données où vos notes sont plus faibles. Planifiez des sessions d'étude régulières et demandez des ressources supplémentaires si nécessaire."
+                    : "Vos résultats indiquent un besoin urgent d'amélioration. Travaillez sur un plan d'étude structuré, en priorisant les matières comme Compilation. Envisagez de consulter vos professeurs pour des conseils spécifiques.";
+                const adviceLines = doc.splitTextToSize(advice, 170);
+                adviceLines.forEach(line => {
+                    doc.text(line, 20, y);
+                    y += 10;
+                });
+
+                // Add chart
+                if (y > 200) {
+                    doc.addPage();
+                    y = 20;
+                }
+                doc.text("Graphique des Notes:", 20, y);
+                y += 10;
+                doc.addImage(chartImage, 'PNG', 20, y, 170, 80);
+                y += 90;
+
+                // Save PDF
+                try {
+                    doc.save(`analyse_notes_${currentUser.name.replace(' ', '_')}.pdf`);
+                    alert('Le rapport d\'analyse a été téléchargé sous forme de PDF (analyse_notes_*.pdf). Ouvrez-le pour voir les détails et le graphique.');
+                } catch (error) {
+                    console.error("Error generating PDF:", error);
+                    alert('Une erreur s\'est produite lors de la génération du PDF. Veuillez vérifier votre navigateur ou contacter l\'administrateur.');
+                }
+            }, 500); // Delay to ensure chart renders
+        }
+
+        // Update messages section
+        function updateMessagesSection() {
+            // Show inbox by default
+            document.getElementById('inbox-view').classList.remove('hidden');
+            document.getElementById('conversation-view').classList.add('hidden');
+            document.getElementById('new-message-view').classList.add('hidden');
+
+            // Populate recipient options for new message form
+            const recipientSelect = document.getElementById('recipient');
+            recipientSelect.innerHTML = '';
+            for (const id in users) {
+                if (id !== currentUser.id) {
+                    const option = document.createElement('option');
+                    option.value = id;
+                    option.textContent = users[id].name;
+                    recipientSelect.appendChild(option);
+                }
+            }
+
+            // Group messages by conversation
+            const conversations = {};
+            messages.forEach(msg => {
+                const otherUserId = msg.senderId === currentUser.id ? msg.recipientId : msg.senderId;
+                if (!conversations[otherUserId]) {
+                    conversations[otherUserId] = [];
+                }
+                conversations[otherUserId].push(msg);
+            });
+
+            // Update inbox table
+            const tableBody = document.getElementById('inbox-table-body');
+            tableBody.innerHTML = '';
+            for (const otherUserId in conversations) {
+                const convoMessages = conversations[otherUserId].sort((a, b) => new Date(b.date) - new Date(a.date));
+                const latestMessage = convoMessages[0];
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-gray-100 cursor-pointer';
+                row.innerHTML = `
+                    <td class="px-6 py-4 whitespace-nowrap font-semibold">${users[otherUserId].name}</td>
+                    <td class="px-6 py-4">${latestMessage.content.substring(0, 50)}${latestMessage.content.length > 50 ? '...' : ''}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">${latestMessage.date}</td>
+                `;
+                row.onclick = () => openConversation(otherUserId);
+                tableBody.appendChild(row);
+            }
+        }
+
+        // Open a conversation
+        function openConversation(partnerId) {
+            currentConversationPartnerId = partnerId;
+            document.getElementById('inbox-view').classList.add('hidden');
+            document.getElementById('conversation-view').classList.remove('hidden');
+            document.getElementById('new-message-view').classList.add('hidden');
+
+            document.getElementById('conversation-title').textContent = `Conversation avec ${users[partnerId].name}`;
+            const messagesContainer = document.getElementById('conversation-messages');
+            messagesContainer.innerHTML = '';
+
+            const convoMessages = messages
+                .filter(msg => 
+                    (msg.senderId === currentUser.id && msg.recipientId === partnerId) ||
+                    (msg.senderId === partnerId && msg.recipientId === currentUser.id)
+                )
+                .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+            convoMessages.forEach(msg => {
+                const isSender = msg.senderId === currentUser.id;
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `mb-4 p-3 rounded-lg ${isSender ? 'bg-purple-100 ml-10' : 'bg-gray-200 mr-10'}`;
+                messageDiv.innerHTML = `
+                    <p class="text-sm font-semibold">${users[msg.senderId].name} <span class="text-gray-500 text-xs">(${msg.date})</span></p>
+                    <p class="text-gray-800">${msg.content}</p>
+                `;
+                messagesContainer.appendChild(messageDiv);
+            });
+
+            // Scroll to the bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        // Send a new message
+        function sendMessage() {
+            const recipientId = document.getElementById('recipient').value;
+            const content = document.getElementById('message-content').value;
+            if (content && recipientId) {
+                const date = new Date().toLocaleString('fr-FR');
+                messages.push({
+                    senderId: currentUser.id,
+                    recipientId: recipientId,
+                    content: content,
+                    date: date
+                });
+                alert(`Message envoyé à ${users[recipientId].name}`);
+                document.getElementById('message-content').value = '';
+                updateMessagesSection();
+            } else {
+                alert('Veuillez sélectionner un destinataire et écrire un message');
+            }
+        }
+
+        // Send a reply
+        function sendReply() {
+            const content = document.getElementById('reply-content').value;
+            if (content && currentConversationPartnerId) {
+                const date = new Date().toLocaleString('fr-FR');
+                messages.push({
+                    senderId: currentUser.id,
+                    recipientId: currentConversationPartnerId,
+                    content: content,
+                    date: date
+                });
+                document.getElementById('reply-content').value = '';
+                openConversation(currentConversationPartnerId);
+            } else {
+                alert('Veuillez écrire un message');
+            }
+        }
+
+        // Show new message form
+        function showNewMessageForm() {
+            document.getElementById('inbox-view').classList.add('hidden');
+            document.getElementById('conversation-view').classList.add('hidden');
+            document.getElementById('new-message-view').classList.remove('hidden');
+        }
+
+        // Back to inbox
+        function backToInbox() {
+            currentConversationPartnerId = null;
+            updateMessagesSection();
+        }
+    </script>
+</body>
+</html>

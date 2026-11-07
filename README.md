@@ -1,38 +1,21 @@
-# Personal Portfolio Website
+# jmjjprojects.com
 
-> *Showcasing my professional skills, projects, and achievements in a clean and optimised website*
+Source of my portfolio: **[jmjjprojects.com](https://jmjjprojects.com)**, hosted on GitHub Pages.
 
----
+A dependency-free static site (HTML, CSS, vanilla JS) with a responsive layout, light/dark themes,
+filterable project cards and per-project detail dialogs.
 
-## 🌟 Highlights
+```
+index.html                 page structure
+assets/js/projects.js      all content: status line, projects, hardware (edit this to add a project)
+assets/js/site.js          renders cards, filters and dialogs
+assets/css/site.css        styles
+projects/                  hosted extras (clustering notebook, Petri net report)
+edumind/                   live demo of the EduMind prototype
+Struggle/                  the STRUGGLE browser game
+```
 
-- **Sections:**
-  - About Me: Introducing myself.
-  - Projects: A curated list of my key projects.
-  - Work: Presenting the computers that I have worked on.
-  - Contact: Easy ways to get in touch.
-- **Responsive Design:** Fully optimised for desktop, tablet, and mobile devices.
-- **Smooth Navigation:** Intuitive layout for seamless user experience.
+To add a project, copy an entry in `assets/js/projects.js`, drop a 1200×700 image in
+`assets/images/projects/`, and push.
 
-### ✍️ Author
-
-**John-Michael JENY JEYARAJ**  
-[GitHub Profile](https://github.com/JMJJ-projects)  
-[LinkedIn Profile](https://www.linkedin.com/in/jmjj/)
-
-  
----
-
-## URL
-
-https://jmjj-projects.github.io/
-
----
-
-## Tech Stack
-
-I used the following technologies:
-  - HTML, CSS, JavaScript
-  - Responsive styling with CSS Flexbox and Grid
-  - Animations for smooth transitions between sections
-
+Author: **John-Michael JENY JEYARAJ** · [GitHub](https://github.com/JMJJ-projects) · [LinkedIn](https://www.linkedin.com/in/jmjj/)
