@@ -53,9 +53,9 @@ window.PORTFOLIO_FR = {
     },
     stockagecloud: {
       subtitle: "Stockage cloud personnel chiffré",
-      context: "Projet personnel · seul",
+      context: "Projet d'équipe (3) · renforcé seul en 2026",
       summary:
-        "Une application web de stockage de fichiers auto-hébergeable : chaque fichier est chiffré au repos en AES-256-GCM, vérifié contre toute altération à chaque téléchargement, et partagé uniquement via des liens révocables qui expirent.",
+        "Une application web de stockage de fichiers auto-hébergeable, créée en 2025 avec Aliou Dia et Abdoulaye Haidara. En 2026, je l'ai retravaillée seul : chaque fichier est désormais chiffré au repos en AES-256-GCM, vérifié contre toute altération à chaque téléchargement, et partagé uniquement via des liens révocables qui expirent.",
       highlights: [
         "Chiffrement par enveloppe : une clé aléatoire par fichier, elle-même chiffrée par une clé maître gardée hors de la base de données",
         "Jetons CSRF, blocage après tentatives de connexion échouées, sessions renforcées et Content-Security-Policy",
@@ -139,19 +139,6 @@ window.PORTFOLIO_FR = {
       ],
       tech: ["Réseaux de Petri", "Modélisation", "Simulation"],
     },
-    siem: {
-      title: "Tableau de bord SIEM assisté par IA",
-      subtitle: "En cours",
-      context: "Projet personnel",
-      summary:
-        "Intégration d'un modèle affiné dans un tableau de bord SIEM pour aider à l'analyse des journaux et à la détection des menaces, en repérant les motifs et anomalies que les systèmes à base de règles ratent.",
-    },
-    struggle: {
-      subtitle: "Jeu web + wiki de manga",
-      context: "Projet personnel",
-      summary:
-        "Un jeu de course à la manière du dinosaure de Chrome, fusionné avec un wiki sur le manga Berserk. Votre score débloque de nouvelles parties du wiki. Fonctionne sur ordinateur et mobile.",
-    },
     cad: {
       title: "Tableau de bord d'analyse clients",
       subtitle: "Analyse de données pour petites entreprises",
@@ -165,22 +152,6 @@ window.PORTFOLIO_FR = {
       summary:
         "Un serveur en C qui centralise des documents pendant que de nombreux clients les lisent et les modifient en temps réel, avec des sémaphores pour passer à l'échelle.",
       tech: ["C", "Sockets", "Sémaphores"],
-    },
-    knapsack: {
-      title: "Algorithmes du sac à dos",
-      subtitle: "Comparaison de solutions exactes et gloutonnes",
-      context: "Projet de Licence",
-      summary:
-        "Implémente et compare quatre approches du problème du sac à dos 0/1 (programmation dynamique classique, sur le poids minimal, sur la valeur, et glouton) et trace leurs performances.",
-      tech: ["C", "Programmation dynamique"],
-    },
-    tower: {
-      title: "Simulateur de Tower Cube 2x2x4",
-      subtitle: "Simulateur et solveur de casse-tête",
-      context: "Projet personnel",
-      summary:
-        "Un simulateur en C du casse-tête Tower Cube 2x2x4 avec des algorithmes de résolution, basé sur une représentation compacte des transformations du cube.",
-      tech: ["C", "Algorithmique"],
     },
   },
 
