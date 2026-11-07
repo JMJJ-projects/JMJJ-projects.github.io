@@ -12,6 +12,7 @@ assets/js/projects.js      all content in English: status line, projects, hardwa
 assets/js/projects.fr.js   French versions of the project texts, keyed by project id
 assets/js/i18n.js          French versions of the page text (keys match data-i18n in index.html)
 assets/js/site.js          renders cards, filters and dialogs
+                           (bump the ?v= number in index.html after editing CSS/JS so phones fetch the new files)
 assets/css/site.css        styles
 projects/                  hosted extras (clustering notebook, Petri net report)
 edumind/                   live demo of the EduMind prototype

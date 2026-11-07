@@ -21,9 +21,24 @@ window.PORTFOLIO_FR = {
     "Report": "Rapport",
     "Diagram": "Schéma",
     "Play": "Jouer",
+    "Poster (FR)": "Poster",
   },
 
   projects: {
+    "cve-triage": {
+      title: "Agent de triage de CVE",
+      subtitle: "Agent LLM pour le triage de vulnérabilités",
+      year: "Nov. 2026",
+      context: "Projet personnel · seul",
+      summary:
+        "Un agent LangGraph qui prend un identifiant CVE, une description de vulnérabilité ou un extrait de code et renvoie une décision de triage structurée (gravité, orientation, correctif conseillé), enregistrée dans SQLite. Les données NVD priment sur les suppositions du modèle, les entrées non fiables ne sont jamais exécutées, et tout fonctionne hors ligne sans clé d'API.",
+      highlights: [
+        "Pipeline en graphe : classification de l'entrée → enrichissement NVD (cache, API, données embarquées) → extraction par LLM → alerte et correctif, revue humaine ou archivage",
+        "Pour un identifiant CVE, NVD décide et le modèle n'est pas appelé. Une CVE citée dans un texte peut relever la gravité mais jamais l'abaisser, ce qui déjoue une injection de prompt",
+        "Sûr par conception : sortie invalide du modèle, erreur réseau ou faible confiance mènent à une revue humaine, jamais à un archivage à tort",
+        "Évalué sur 35 cas annotés, dont des tentatives d'injection : 80 % d'orientations correctes (100 % pour les identifiants CVE), résultats détaillés par catégorie. CI sur Python 3.11 à 3.13",
+      ],
+    },
     stockagecloud: {
       subtitle: "Stockage cloud personnel chiffré",
       context: "Projet personnel · seul",

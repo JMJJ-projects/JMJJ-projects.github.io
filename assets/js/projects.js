@@ -14,6 +14,27 @@ window.PORTFOLIO = {
 
   projects: [
     {
+      id: "cve-triage",
+      featured: true,
+      isNew: true,
+      title: "CVE triage agent",
+      subtitle: "LLM agent for vulnerability triage",
+      year: "Nov 2026",
+      context: "Personal project · solo",
+      categories: ["security", "ai"],
+      image: "assets/images/projects/cve-triage.jpg",
+      summary:
+        "A LangGraph agent that takes a CVE ID, a vulnerability description or a code snippet and returns a structured triage decision (severity, route, advisory fix), stored in SQLite. NVD data beats LLM guesses, untrusted input is never executed, and it runs fully offline with no API key.",
+      highlights: [
+        "Graph pipeline: classify input → enrich from NVD (cache, live API, bundled records) → LLM extraction → route to alert & patch, human review or archive",
+        "For a CVE ID, NVD decides and the model is skipped. A CVE mentioned in text can raise severity but never lower it, which blocks a prompt-injection trick",
+        "Fail-safe by design: invalid model output, network errors and low confidence end in human review, never in a wrong archive",
+        "Evaluated on 35 labelled items, including injection attempts: 80% routing accuracy (100% for CVE IDs), reported honestly per slice. CI on Python 3.11–3.13",
+      ],
+      tech: ["Python", "LangGraph", "LangChain", "SQLite", "NVD API", "pytest"],
+      links: [{ label: "Code", url: "https://github.com/JMJJ-projects/cve-triage-agent" }],
+    },
+    {
       id: "stockagecloud",
       featured: true,
       title: "StockageCloud",
@@ -44,7 +65,8 @@ window.PORTFOLIO = {
       year: "2026",
       context: "M1 research project (TER) · team of 3",
       categories: ["research", "systems"],
-      image: "assets/images/projects/ctl-onthefly.jpg",
+      image: "assets/images/projects/ter-poster.jpg",
+      portrait: true,
       summary:
         "An algorithm that checks temporal-logic (CTL) properties on acyclic Kripke structures while generating states on demand, so it can stop as soon as the answer is known instead of building the whole state space.",
       highlights: [
@@ -54,7 +76,10 @@ window.PORTFOLIO = {
         "C implementation with lazy state loading and caching that confirms the theoretical results",
       ],
       tech: ["C", "CTL", "Model checking", "Formal methods"],
-      links: [{ label: "Code", url: "https://github.com/MaTCoTT/TER" }],
+      links: [
+        { label: "Poster (FR)", url: "projects/ter/poster.pdf" },
+        { label: "Code", url: "https://github.com/MaTCoTT/TER" },
+      ],
     },
     {
       id: "kaggle",

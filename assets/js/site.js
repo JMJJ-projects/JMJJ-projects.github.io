@@ -23,6 +23,7 @@
     return {
       ...p,
       title: T(p.title, f.title),
+      year: T(p.year, f.year),
       subtitle: T(p.subtitle, f.subtitle),
       context: T(p.context, f.context),
       summary: T(p.summary, f.summary),
@@ -67,10 +68,12 @@
       .map(view)
       .map(
         (p) => `
-        <article class="feature">
-          <div class="feature-media"><img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" width="1200" height="700"></div>
+        <article class="feature${p.portrait ? " portrait" : ""}">
+          ${p.portrait
+            ? `<a class="feature-media" href="${esc(p.image)}" target="_blank" rel="noopener" title="${esc(ui("ui.enlarge"))}"><img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" width="1600" height="2263"></a>`
+            : `<div class="feature-media"><img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" width="1200" height="700"></div>`}
           <div class="feature-body">
-            <span class="meta">${meta(p)}</span>
+            <span class="meta">${p.isNew ? `<span class="new">${esc(ui("ui.new"))}</span>` : ""}${meta(p)}</span>
             <h3>${esc(p.title)}</h3>
             <p class="sub">${esc(p.subtitle)}</p>
             <p class="muted" style="margin:0">${esc(p.summary)}</p>
@@ -220,7 +223,9 @@
     store.set("theme", next);
     updateThemeButton();
   });
-  prefersDark.addEventListener("change", updateThemeButton);
+  // Safari < 14 only supports the old addListener API
+  if (prefersDark.addEventListener) prefersDark.addEventListener("change", updateThemeButton);
+  else if (prefersDark.addListener) prefersDark.addListener(updateThemeButton);
 
   // -------------------------------------------------------------------- init
   $("#year").textContent = new Date().getFullYear();
