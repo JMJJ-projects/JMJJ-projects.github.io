@@ -149,7 +149,8 @@
         ${p.highlights ? `<ul class="hl">${p.highlights.map((h) => `<li>${esc(h)}</li>`).join("")}</ul>` : ""}
         ${tags(p.tech)}
         ${links(p.links)}
-      </div>`;
+      </div>
+      ${(p.gallery || []).map((g) => `<img class="gallery" src="${esc(g)}" alt="" loading="lazy">`).join("")}`;
     dialog.querySelector(".close").setAttribute("aria-label", ui("ui.close"));
     return true;
   }

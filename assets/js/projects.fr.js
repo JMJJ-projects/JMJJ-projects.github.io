@@ -22,9 +22,23 @@ window.PORTFOLIO_FR = {
     "Diagram": "Schéma",
     "Play": "Jouer",
     "Poster": "Poster",
+    "Benchmark results": "Résultats du benchmark",
   },
 
   projects: {
+    "sim-agent": {
+      title: "Agent de simulation",
+      subtitle: "Langage naturel → code de simulation exécuté en sandbox",
+      context: "Projet personnel · seul",
+      summary:
+        "On pose une question sur une simulation de transport de particules en langage naturel : l'agent écrit le code Python, l'exécute dans une sandbox Docker verrouillée, et le corrige à partir de l'erreur quand il échoue. Fonctionne avec de petits modèles locaux (4 Go de VRAM) ou hébergés, et s'utilise comme serveur MCP.",
+      highlights: [
+        "Benchmark sur 36 tâches : la boucle de correction fait passer un modèle local 3B de 7/36 à 20/36, une ligne de prompt en plus atteint 23/36 du premier coup, et gpt-oss-120b résout 36/36",
+        "Deux couches de sécurité : liste blanche statique sur le code généré, puis sandbox Docker sans réseau, en lecture seule et avec limites de ressources, prouvée par 16 tests d'isolation",
+        "Serveur MCP exposant le simulateur, la sandbox et l'agent comme outils, testé avec un vrai client MCP",
+        "Simulateur Monte Carlo basé sur les données d'atténuation du NIST et validé par la loi de Beer–Lambert ; 404 tests et intégration continue sous Linux",
+      ],
+    },
     "cve-triage": {
       subtitle: "Agent LLM de triage de vulnérabilités",
       context: "Projet personnel · seul",
