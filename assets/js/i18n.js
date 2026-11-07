@@ -20,8 +20,6 @@ window.I18N_FR = {
 
   "about.eyebrow": "À propos",
   "about.title": "Bonjour, moi c'est John-Michael.",
-  "about.quote":
-    "«&nbsp;Le succès n'est pas final, l'échec n'est pas fatal&nbsp;: c'est le courage de continuer qui compte.&nbsp;» — Winston Churchill",
   "about.p1":
     "Je disais être passionné par «&nbsp;la tech&nbsp;», jusqu'à réaliser que je m'éparpillais. Trois domaines sont restés. " +
     "<strong>Le cloud</strong>&nbsp;: tout a commencé quand mon père m'a demandé de sauvegarder ses photos et ses contacts en sécurité, " +
@@ -48,13 +46,12 @@ window.I18N_FR = {
     "<li>Cryptographie appliquée</li><li>Vérification formelle</li><li>UML et Scrum</li>",
 
   "hw.eyebrow": "Sur le terrain",
-  "hw.title": "Réparation et reconditionnement de matériel",
+  "hw.title": "Réparer des portables, par passion",
   "hw.intro":
-    "Des portables que j'ai diagnostiqués, réparés et préparés. Certains sont à vendre&nbsp;: " +
-    "<a href=\"mailto:johnjenyjeyaraj@gmail.com?subject=Ordinateur%20portable\">écrivez-moi</a> si l'un d'eux vous intéresse (prix négociables).",
+    "Une habitude gardée depuis mon poste de technicien&nbsp;: je répare et remets en état de vieux portables sur mon temps libre. En voici quelques-uns&nbsp;:",
 
   "footer.title": "Discutons",
-  "footer.text": "Une offre de stage, une question sur un projet ou l'un des portables&nbsp;: contactez-moi.",
+  "footer.text": "Une offre de stage ou une question sur un projet&nbsp;: contactez-moi.",
 
   // strings used by site.js
   "ui.available": "Disponible",

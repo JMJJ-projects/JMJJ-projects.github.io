@@ -63,11 +63,11 @@ window.PORTFOLIO = {
       title: "StockageCloud",
       subtitle: "Encrypted personal cloud storage",
       year: "2025–26",
-      context: "Personal project · solo",
+      context: "Team project (3) · hardened solo in 2026",
       categories: ["security", "web"],
       image: "assets/images/projects/stockagecloud.jpg",
       summary:
-        "A self-hostable file storage web app where every file is encrypted at rest with AES-256-GCM, checked for tampering on every download and shared only through expiring, revocable links.",
+        "A self-hostable file storage web app, built in 2025 with Aliou Dia and Abdoulaye Haidara. In 2026 I reworked it on my own: every file is now encrypted at rest with AES-256-GCM, checked for tampering on every download, and shared only through expiring, revocable links.",
       highlights: [
         "Envelope encryption: a random key per file, wrapped by a server master key kept out of the database",
         "CSRF tokens, brute-force lockout, hardened sessions and a Content-Security-Policy",
@@ -207,30 +207,6 @@ window.PORTFOLIO = {
       ],
     },
     {
-      id: "siem",
-      title: "AI-assisted SIEM dashboard",
-      subtitle: "Work in progress",
-      context: "Personal project",
-      categories: ["security", "ai"],
-      image: null,
-      summary:
-        "Integrating a fine-tuned model into a SIEM dashboard to help with log analysis and threat detection, by spotting patterns and anomalies that rule-based systems miss.",
-      tech: ["Python", "LLMs", "SIEM"],
-      links: [],
-    },
-    {
-      id: "struggle",
-      title: "STRUGGLE",
-      subtitle: "Browser game + manga wiki",
-      context: "Personal project",
-      categories: ["web"],
-      image: "assets/images/Struggle.png",
-      summary:
-        "A Chrome-dinosaur-style runner fused with a wiki about the manga Berserk. Your score unlocks more of the wiki. Works on desktop and mobile.",
-      tech: ["JavaScript", "HTML/CSS", "PHP"],
-      links: [{ label: "Play", url: "Struggle/struggle.html" }],
-    },
-    {
       id: "cad",
       title: "Customer Analysis Dashboard",
       subtitle: "Data insights for small businesses",
@@ -254,56 +230,24 @@ window.PORTFOLIO = {
       tech: ["C", "Sockets", "Semaphores"],
       links: [{ label: "Code", url: "https://github.com/JMJJ-projects/Wikicomptine" }],
     },
-    {
-      id: "knapsack",
-      title: "Knapsack algorithms",
-      subtitle: "Comparing exact and greedy solutions",
-      context: "Licence project",
-      categories: ["systems"],
-      image: "assets/images/Knapsack_image.png",
-      summary:
-        "Implements and benchmarks four approaches to the 0/1 knapsack problem (classic DP, DP on minimum weight, DP on value, greedy) and plots their performance.",
-      tech: ["C", "Dynamic programming"],
-      links: [{ label: "Code", url: "https://github.com/JMJJ-projects/Optimising-Algorithms-For-The-Knapsack-Problem" }],
-    },
-    {
-      id: "tower",
-      title: "2x2x4 Tower Cube simulator",
-      subtitle: "Puzzle simulator and solver",
-      context: "Personal project",
-      categories: ["systems"],
-      image: "assets/images/Tower_image.png",
-      summary:
-        "A C simulator for the 2x2x4 Tower Cube puzzle with solving algorithms, using a compact representation of the cube's transformations.",
-      tech: ["C", "Algorithms"],
-      links: [{ label: "Code", url: "https://github.com/JMJJ-projects/2x2x4-Tower-Cube-Simulator" }],
-    },
   ],
 
   hardware: [
     {
-      name: "HP EliteBook 8440p", available: true, price: "€250", image: "assets/images/HP_Elitebook.jpg",
-      specs: ["Intel Core i7-620M", "6 GB RAM", "256 GB SSD", '14" 1366×768', "Windows 11 + Office"], condition: "Good",
+      name: "HP EliteBook 8440p", image: "assets/images/HP_Elitebook.jpg",
+      specs: ["Intel Core i7-620M", "6 GB RAM", "256 GB SSD", "Windows 11"],
     },
     {
-      name: "Dell Latitude E5430", available: true, price: "€350", image: "assets/images/Dell_Latitude3.jpg",
-      specs: ["Intel Core i5-3340M", "8 GB RAM", "512 GB SSD", '14.1" 1600×900', "Windows 11 + Office"], condition: "Excellent",
+      name: "Dell Latitude E5430", image: "assets/images/Dell_Latitude3.jpg",
+      specs: ["Intel Core i5-3340M", "8 GB RAM", "512 GB SSD", "Windows 11"],
     },
     {
-      name: "Dell Latitude E5430", available: true, price: "€300", image: "assets/images/Dell_Latitude2.jpg",
-      specs: ["Intel Core i5-3340M", "8 GB RAM", "256 GB SSD", '14.1" 1600×900', "Windows 11 + Office"], condition: "Excellent",
+      name: "HP Envy x360 13", image: "assets/images/HP_ENVYx360.jpg",
+      specs: ["AMD Ryzen 7 4700U", "16 GB RAM", "512 GB NVMe", "Windows 11 + Ubuntu"],
     },
     {
-      name: "HP Envy x360 13", available: false, image: "assets/images/HP_ENVYx360.jpg",
-      specs: ["AMD Ryzen 7 4700U", "16 GB RAM", "512 GB NVMe", "Touchscreen", "Windows 11 + Ubuntu"],
-    },
-    {
-      name: "Acer Nitro 5", available: false, image: "assets/images/Acer_Nitro15.jpg",
-      specs: ["Intel Core i5-11400H", "16 GB RAM", "RTX 3050", '15.6" FHD IPS', "Windows 11 + Ubuntu"],
-    },
-    {
-      name: "Dell Latitude E5430", available: false, image: "assets/images/Dell_Latitude1.jpg",
-      specs: ["Intel Core i5-3340M", "4 GB RAM", "256 GB SSD", "Windows 11 + Office"],
+      name: "Acer Nitro 5", image: "assets/images/Acer_Nitro15.jpg",
+      specs: ["Intel Core i5-11400H", "16 GB RAM", "RTX 3050", "Windows 11 + Ubuntu"],
     },
   ],
 };

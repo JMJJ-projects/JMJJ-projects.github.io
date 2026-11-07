@@ -170,17 +170,14 @@
   // ---------------------------------------------------------------- hardware
   const hwT = (s) => T(s, FR.hardware && FR.hardware[s]);
   function renderHardware() {
-    const hw = [...data.hardware].sort((a, b) => b.available - a.available);
-    $("#hardware-grid").innerHTML = hw
+    $("#hardware-grid").innerHTML = data.hardware
       .map(
         (h) => `
-        <article class="hw${h.available ? "" : " sold"}">
+        <article class="hw">
           <img src="${esc(h.image)}" alt="${esc(h.name)}" loading="lazy">
           <div class="hw-body">
-            <span class="badge ${h.available ? "ok" : "sold"}">${h.available ? `${ui("ui.available")} · ${esc(lang === "fr" ? h.price.replace(/^€(\d+)/, "$1\u00a0€") : h.price)}` : ui("ui.sold")}</span>
             <h3>${esc(h.name)}</h3>
             <ul>${h.specs.map((s) => `<li>${esc(hwT(s))}</li>`).join("")}</ul>
-            ${h.condition ? `<span class="meta">${ui("ui.condition")}${lang === "fr" ? "\u00a0: " : ": "}${esc(hwT(h.condition))}</span>` : ""}
           </div>
         </article>`
       )
