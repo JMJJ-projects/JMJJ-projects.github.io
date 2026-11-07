@@ -1,498 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-    
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>
-            John-Michael JENY JEYARAJ
-        </title>
-        <link rel="icon" type="image/icon" href="assets/images/tabicon.ico">
-        <link rel="stylesheet" type="text/css" href="assets/css/main">
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-        <link href="assets/css/bootstrap-theme.min.css" rel="stylesheet">
-        <link href="assets/css/font-awesome.min.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700,700i" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,700,700i" rel="stylesheet">
-	<link href="assets/css/main.css" rel="stylesheet">
-        <link rel="icon" href="assets/images/logo.png">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SF90G37B4T"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>John-Michael Jeny Jeyaraj · Portfolio</title>
+  <meta name="description" content="Computer science Master's student (Computer & Network Systems). Projects in security, cloud, machine learning, compilers and formal verification.">
+  <meta property="og:title" content="John-Michael Jeny Jeyaraj · Portfolio">
+  <meta property="og:description" content="Security, cloud, machine learning, compilers and formal verification projects.">
+  <meta property="og:image" content="https://jmjjprojects.com/assets/images/projects/stockagecloud.jpg">
+  <meta property="og:url" content="https://jmjjprojects.com/">
+  <link rel="icon" href="assets/images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css">
 
-  gtag('config', 'G-SF90G37B4T');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SF90G37B4T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SF90G37B4T');
+  </script>
+</head>
+<body>
+  <a class="skip" href="#projects">Skip to projects</a>
 
-    <body>
-        <!-- Index starts here -->
-        <div id="index">
-            <div class="container main">
-                <div class="row home">
-                    <div id="index_left" class="col-md-6 left">
-                        <div class="logo">
-                            <img src="assets/images/logo.png" alt="Logo">
-                            <h4>
-                                Currently seeking an internship for February 2026
-                            </h4>
-                        </div>
-                        <p class="home-description">
-                            Hi, I am John-Michael JENY JEYARAJ, Computer Science student from France.
-                            I am passionate about cloud, AI and cybersecurity. I'm proficient in data
-                            structures, algorithms, networks, and data analysis.
-                        </p>
-                        <div class="btn-group-vertical custom_btn animated slideinright">
-                            <div id="about" class="btn btn-rabbit">
-                                About
-                            </div>
-                            <div id="projects" class="btn btn-rabbit">
-                                Projects
-                            </div>
-                            <div id="work" class="btn btn-rabbit">Work</div>
-                        </div>
-                        <div class="social">
-                            <a href="mailto:johnjenyjeyaraj@gmail.com">
-                                <img src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/gmail.svg" alt="gmail">
-                            </a>
-                            <a href="https://www.linkedin.com/in/jmjj/">
-                                <i class="fa fa-linkedin" aria-hidden="true">
-                                </i>
-                            </a>
-                        </div>
-                    </div>
-                    <div id="index_right" class="col-md-6 text-center right">
-                        <img class="img-responsive img-rabbit" src="assets/images/John_Main.jpg" alt="Main Image">
-                    </div>
-                </div>
-            </div>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top"><img src="assets/images/logo.png" alt="" width="28" height="28"><span>JMJJ</span></a>
+      <nav aria-label="Main">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#hardware">Hardware</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero wrap">
+      <div class="hero-text">
+        <p class="status"><span class="dot" aria-hidden="true"></span><span id="status"></span></p>
+        <h1>John-Michael<br>Jeny Jeyaraj</h1>
+        <p class="lead">Computer science Master's student specialising in <strong>computer &amp; network systems</strong>.
+          I build things across <strong>security</strong>, <strong>cloud</strong> and <strong>machine learning</strong>,
+          and I like understanding systems all the way down, from compilers to formal verification.</p>
+        <div class="cta">
+          <a class="btn primary" href="#projects">See my projects</a>
+          <a class="btn" href="mailto:johnjenyjeyaraj@gmail.com">Get in touch</a>
         </div>
-        <!-- index ends here -->
-        <!-- about starts here -->
-        <div id="about_scroll" class="pages ">
-            <div class="container main">
-                <div class="row">
-                    <div class="col-md-6 left" id="about_left">
-                        <a href="#index" class="btn btn-rabbit back">
-                            <i class="fa fa-angle-left" aria-hidden="true">
-                            </i>
-                            Back to home
-                        </a>
-                        <div class="watermark">
-                            <h2 class="page-title">
-                                About
-                            </h2>
-                        </div>
-                        <p class='subtitle'>
-                            "Success is not final, failure is not fatal: it is the courage to continue
-                            that counts." – Winston Churchill
-                        </p>
-                        <p class="info">
-                            Hi, I'm John-Michael. I used to say I was passionate about tech, but as
-                            I learnt more and more about the world of technology, I realised that I
-                            was spreading myself too thin. My interest in the cloud industry began
-                            when my father asked me to safely store his photos, videos, and contacts.
-                            I was impressed by how easy it was to set up and use. It sparked my desire
-                            to help develop similar applications that enable people to safely keep
-                            their precious memories and other important documents. I became interested
-                            in AI, because it's the new hot thing! Despite its controversial nature,
-                            it's genuinely fascinating seeing the rapid advancement of such cutting-edge
-                            technology. Finally, my interest in cybersecurity stems not only from seeing
-                            frequent reports of large-scale hacks in the news, but also from personal
-                            experience — I was targeted once when I was younger. Since then, I’ve made
-                            it a priority to read up on and follow basic security principles.
-                        </p>
-                        <p class="info">
-                            During my time at Computer City, I gained hands-on experience in troubleshooting
-                            and repairing a wide range of computer hardware and software issues. I
-                            became proficient in diagnosing and fixing faulty components in both PCs
-                            and laptops, including performing upgrades and repairs on motherboards,
-                            hard drives, and RAM. One of my key achievements was successfully recovering
-                            systems with broken BIOS and performing fresh installations of Windows
-                            on machines that had completely failed. Additionally, I handled troubleshooting
-                            of network - related issues, such as firewalls and VPN configurations,
-                            helping customers resolve connectivity problems. This knowledge has remained 
-			    valuable over the years, and I continue to apply it by repairing and restoring
-                            old laptops as a personal hobby. Feel free to explore my Work page to see
-                            examples of my hands-on experience.
-                        </p>
-                        <p class="info">
-                            During my time at university, I have become proficient in programming
-                            languages such as Python, C, Java, and SQL, applying these skills in academic
-                            projects, problem-solving, and algorithm optimization. I’ve built a strong
-                            foundation in algorithms and data structures, utilizing sorting, searching,
-                            graph traversal, and optimization techniques like dynamic programming and
-                            backtracking to solve complex problems. My understanding of data structures
-                            — such as arrays, linked lists, stacks, queues, and trees — has enabled
-                            me to design efficient and scalable solutions. Networking is another area
-                            where I’ve gained hands-on experience, including knowledge of protocols
-                            like TCP/IP, VPNs, and firewalls. I've also learnt how to develop web applications
-                            using HTML, CSS, and Javascript. My familiarity with the Linux CLI and
-                            Git has allowed me to work effectively in collaborative environments, streamlining
-                            workflows and version control.
-                        </p>
-                        <p class="info">
-                            Outside of my technical pursuits, I enjoy activities that challenge both
-                            my mind and creativity. I was an avid chess player and a member of a club
-                            for 3 years. Currently my passion lies in tabletop role-playing games,
-                            where exploring the creative and imaginative world crafted by my DM gives
-                            me a thrill I had never quite experienced before. I particularly love the
-                            storytelling and world-building aspects, although I'm no slouch in the
-                            strategic and number crunching sides of the game. When I visit my parents,
-                            I enjoy tending to their vegetable and flower garden with my father. It’s
-                            a relaxing activity that gives us a chance to bond and catch up while enjoying
-                            the outdoors.
-                        </p>
-                    </div>
-                    <div class="col-md-6 right" id="about_right">
-                        <img class="img-responsive img-rabbit" src="assets/images/John_Photo.png" alt="John Photo">
-                    </div>
-                </div>
-            </div>
+        <ul class="socials" aria-label="Links">
+          <li><a href="https://github.com/JMJJ-projects" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg></a></li>
+          <li><a href="https://www.linkedin.com/in/jmjj/" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg></a></li>
+          <li><a href="mailto:johnjenyjeyaraj@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13Zm2.3-.5 7.7 6.16L19.7 5H4.3ZM20 6.6l-7.38 5.9a1 1 0 0 1-1.24 0L4 6.6v11.9c0 .28.22.5.5.5h15a.5.5 0 0 0 .5-.5V6.6Z"/></svg></a></li>
+        </ul>
+      </div>
+      <figure class="hero-photo">
+        <img src="assets/images/John_Main.jpg" alt="Portrait of John-Michael" width="1066" height="1600">
+      </figure>
+    </section>
+
+    <!-- Featured + all projects -->
+    <section id="projects" class="section">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">Selected work</p>
+          <h2>Featured projects</h2>
+        </header>
+        <div id="featured" class="featured"></div>
+
+        <header class="section-head all-head">
+          <h2>More projects</h2>
+          <div id="filters" class="filters" role="tablist" aria-label="Filter projects"></div>
+        </header>
+        <div id="grid" class="grid"></div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section alt">
+      <div class="wrap about">
+        <div class="about-text">
+          <p class="eyebrow">About</p>
+          <h2>Hi, I'm John-Michael.</h2>
+          <blockquote>“Success is not final, failure is not fatal: it is the courage to continue that counts.” — Winston Churchill</blockquote>
+          <p>I used to say I was passionate about “tech”, until I realised I was spreading myself too thin. Three areas stuck.
+            <strong>Cloud</strong>: it started when my father asked me to store his photos and contacts safely, and I wanted to build that kind of tool myself.
+            <strong>AI</strong>: watching such fast progress up close is genuinely fascinating.
+            <strong>Cybersecurity</strong>: I was targeted by an attack when I was younger, and I've taken security seriously ever since.</p>
+          <p>I did my Licence in computer science at Université Sorbonne Paris Nord (two years of it as a double degree with mathematics)
+            and I'm now doing a Master's in Computer &amp; Network Systems at Université d'Évry Paris-Saclay.
+            I went to secondary school in the UK, so I work comfortably in English and French.</p>
+          <p>At Computer City I diagnosed and repaired PCs and laptops: motherboards, drives, RAM, broken BIOSes, fresh Windows installs,
+            plus firewall and VPN troubleshooting for customers. I still refurbish old laptops as a hobby (see below).</p>
+          <p>Outside computing: I played competitive chess in a club for three years, and these days I'm hooked on tabletop role-playing games,
+            for both the storytelling and the number-crunching. When I visit my parents, I tend their vegetable garden with my father.</p>
         </div>
-        <!-- About ends here -->
-        <!-- Projects starts here -->
-        <div id="projects_scroll" class="pages">
-            <div class="container main">
-                <div class="row">
-                    <div class="col-md-6" id="projects_left">
-                        <a href="#index" class="btn btn-rabbit back">
-                            <i class="fa fa-angle-left">
-                            </i>
-                            Back to Home
-                        </a>
-                        <div class="watermark">
-                            <h2 class="page-title">
-                                Projects
-                            </h2>
-                        </div>
-                        <p class='subtitle'>
-                            This is a selection of the software development projects I've been working
-                            on:
-                        </p>
-			<p>
-                            <p>
-                            <b>
-                                Cloud File Manager
-                            </b>
-                        </p>
-                        <p class="info">
-                            Web-based cloud storage application enabling secure file management with authentication, upload, download, deletion, and file sharing. Built in Python and hosted on PythonAnywhere, featuring a clean interface and structured back-end.
-                            <br>
-                            <a href="https://johnm123.pythonanywhere.com/">
-                                Try it here!
-                            </a>
-                        </p>
-                        <br>
-                            <b>
-                                STRUGGLE
-                            </b>
-                        </p>
-                        <p class="info">
-                        	Struggle is an interactive game that fuses the google dinosaur game with a
-				wiki about the manga 'Berserk'. As your score increases you will be able to
-				unlock more functionnalities of the wiki. The game works on pc and mobile,
-				and the wiki is unlocked via PHP.
-                            <br>
-                            <a href="https://JMJJ-projects.com/Struggle/struggle.html">
-                                Play it here!
-                            </a>
-                        </p>
-                        <br>
-                        <p>
-                            <b>
-                                Customer Analysis Dashboard
-                            </b>
-                        </p>
-                        <p class="info">
-                            A Python and SQL application for generating data insights and visualizations
-                            for small businesses. Employees of the business must first login to access
-                            the 'sensitive' (currently just a sample) data. The users can filter through
-                            data of their customers, respond to complaints clients might've made from
-                            a client facing application, and even analyse the behaviours of their customers.
-                            <br>
-                            <a href="https://github.com/JMJJ-projects/Customer-Analysis-Dashboard">
-                                View on GitHub
-                            </a>
-                        </p>
-                        <br>
-                        <p>
-                            <b>
-                                Wikicomptine
-                            </b>
-                        </p>
-                        <p class="info">
-                            An application in C, establishing a stable connection between a server
-                            and clients. It allows users to store their documents on a central server.
-                            The central server, which hosts the files, is scalable due to implementation
-                            of semaphores. Clients can edit and add to these files, and changes are
-                            reflected in real time. Careful use of data structures enables the application
-                            to run smoothly.
-                            <br>
-                            <a href="https://github.com/JMJJ-projects/Wikicomptine">
-                                View on GitHub
-                            </a>
-                        </p>
-                        <br>
-                        <p>
-                            <b>
-                                The Knapsack Problem
-                            </b>
-                        </p>
-                        <p class="info">
-                            An application in C, which at first was to figure out how to program an
-                            optimal solution for the Knapsack problem. It later evolved into comparing
-                            the solutions to the 0/1 Knapsack Problem. Comparing different methods
-                            of programming and plotting them on a graph highlights the difference of
-                            each algorithm. Currently comparing basic dynamic programming (dp), dp
-                            based on the minimum weight, dp based on the value, and a greedy algorithm.
-                            <br>
-                            <a href="https://github.com/JMJJ-projects/Optimising-Algorithms-For-The-Knapsack-Problem">
-                                View on GitHub
-                            </a>
-                        </p>
-                        <br>
-                        <p>
-                            <b>
-                                2x2x4 Tower Cube Simulator
-                            </b>
-                        </p>
-                        <p class="info">
-                            A C program simulating a 2x2x4 Tower Cube puzzle, complete with algorithms
-                            for solving. Using an innovative idea for representing the transformative
-                            nature of the cube, this program can be coupled with a visualiser to make
-                            one of the first proper Tower Cube Simulator on the internet.
-                            <br>
-                            <a href="https://github.com/JMJJ-projects/2x2x4-Tower-Cube-Simulator">
-                                View on GitHub
-                            </a>
-                        </p>
-                        <br>
-                        <p>
-                            <b>
-                                AI-based SIEM Dashboard
-                            </b>
-                            (Work in Progress)
-                        </p>
-                        <p class="info">
-                            I'm trying to integrate ai into a SIEM dashboard to help with log analysis and threat detection. The goal is to fine tune an AI model to identify patterns and anomalies in log data, enhancing the capabilities of traditional SIEM systems.
-                        </p>
-                    </div>
-                    <div class="col-md-6" id="projects_right">
-                        <br style="line-height:16;">
-                        <div class="owl-demo"> 
-				<div class="owl-carousel owl-theme">
-                    <div class="item">
-						<img src="assets/images/Cloud Storage Interface.png" class="img-responsive" alt="Project 1 Screenshot">
-					</div>
-					<div class="item">
-						<img src="assets/images/Struggle.png" class="img-responsive" alt="Project 2 Screenshot">
-					</div>
-                            		<div class="item">
-                                		<img src="assets/images/CAD_image.png" class="img-responsive" alt="Project 3 Screenshot">
-                            		</div>
-                            		<div class="item">
-                                		<img src="assets/images/Server_image.png" class="img-responsive" alt="Project 4 Screenshot">
-                            		</div>
-                            		<div class="item">
-                                		<img src="assets/images/Knapsack_image.png" class="img-responsive" alt="Project 5 Screenshot">
-                            		</div>
-                            		<div class="item">
-                                		<img src="assets/images/Tower_image.png" class="img-responsive" alt="Project 6 Screenshot">
-                            		</div>
-				</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Projects ends here -->
-	<!-- Work starts here -->
-        <div id="work_scroll" class="pages">
-            <div class="container main">
-                <div class="row">
-                    <div class="col-md-6" id="work_left">
-                        <a href="#index" class="btn btn-rabbit back">
-                            <i class="fa fa-angle-left">
-                            </i>
-                            Back to Home
-                        </a>
-                        <div class="watermark">
-                            <h2 class="page-title">
-                                Work
-                            </h2>
-                        </div>
-                        <p class='subtitle'>
-                            This is a selection of the laptops and PCs I've been working. Please feel free to contact me if you would be interested in buying one of the available ones!
-                        </p>
-                        <p>
-                            <b>
-                                HP EliteBook 8440p - Available!
-                            </b>
-                        </p>
-                        <div class="info">
-                            <ul>
-				<li><strong>Processor:</strong> Intel Core i7-620M</li>
-				<li><strong>RAM:</strong> 6GB</li>
-				<li><strong>Storage:</strong> 256GB SSD (SATA)</li>
-				<li><strong>Graphics:</strong> Intel Integrated Graphics</li>
-				<li><strong>Display:</strong> 14" (1366 x 768)</li>
-				<li><strong>Ports:</strong> Ethernet, VGA, USB (3x), DVD</li>
-				<li><strong>Weight:</strong> 2.1kg</li>
-				<li><strong>Operating System:</strong> Windows 11 Home</li>
-				<li><strong>Pack Office:</strong> yes</li>
-				<li><strong>Accessories:</strong> Original charger and carrying case</li>
-				<li><strong>Condition:</strong> Good</li>
-				<li><strong>Price:</strong> €250 - To be negotiated!</li>
-			    </ul>
-                        </div>
-                        <p>
-                            <b>
-                                Dell Latitude E5430 - Available!
-                            </b>
-                        </p>
-                        <div class="info">
-                            <ul>
-				<li><strong>Processor:</strong> Intel Core i5-3340M</li>
-				<li><strong>RAM:</strong> 8GB</li>
-				<li><strong>Storage:</strong> 512GB SSD (SATA)</li>
-				<li><strong>Graphics:</strong> Intel Integrated Graphics</li>
-				<li><strong>Display:</strong> 14.1" HD - LED (1600 x 900)</li>
-				<li><strong>Ports:</strong> USB (2x), VGA HD-15, HDMI, SD Card Reader, ethernet, headphone jack</li>
-				<li><strong>Weight:</strong> 2.04kg</li>
-				<li><strong>Operating System:</strong> Windows 11 Home</li>
-				<li><strong>Pack Office:</strong> yes</li>
-				<li><strong>Accessories:</strong> Original charger and carrying case</li>
-				<li><strong>Condition:</strong> Excellent</li>
-				<li><strong>Price:</strong> €350 - To be negotiated!</li>
-			    </ul>
-                        </div>
-                        <p>
-                            <b>
-                                Dell Latitude E5430 - Available!
-                            </b>
-                        </p>
-                        <div class="info">
-                            <ul>
-				<li><strong>Processor:</strong> Intel Core i5-3340M</li>
-				<li><strong>RAM:</strong> 8GB</li>
-				<li><strong>Storage:</strong> 256GB SSD (SATA)</li>
-				<li><strong>Graphics:</strong> Intel Integrated Graphics</li>
-				<li><strong>Display:</strong> 14.1" HD - LED (1600 x 900)</li>
-				<li><strong>Ports:</strong> USB (2x), VGA HD-15, HDMI, SD Card Reader, ethernet, headphone jack</li>
-				<li><strong>Weight:</strong> 2.04kg</li>
-				<li><strong>Operating System:</strong> Windows 11 Home</li>
-				<li><strong>Pack Office:</strong> yes</li>
-				<li><strong>Accessories:</strong> Excellent</li>
-				<li><strong>Condition:</strong> Original charger and carrying case</li>
-				<li><strong>Price:</strong> €300 - To be negotiated!</li>
+        <aside class="skills" aria-label="Skills">
+          <img class="about-photo" src="assets/images/John_Photo.png" alt="John-Michael" width="418" height="640" loading="lazy">
+          <h3>Languages</h3>
+          <ul class="chips"><li>Python</li><li>C</li><li>Java</li><li>SQL</li><li>JavaScript</li><li>HTML/CSS</li></ul>
+          <h3>Tools &amp; frameworks</h3>
+          <ul class="chips"><li>Flask</li><li>scikit-learn</li><li>XGBoost</li><li>PyTorch</li><li>pandas</li><li>JavaCC</li><li>Docker</li><li>Git</li><li>Linux</li><li>GitHub Actions</li></ul>
+          <h3>Fundamentals</h3>
+          <ul class="chips"><li>Algorithms &amp; data structures</li><li>Networks (TCP/IP, VPN, firewalls)</li><li>Applied cryptography</li><li>Formal verification</li><li>UML &amp; Scrum</li></ul>
+        </aside>
+      </div>
+    </section>
 
+    <!-- Hardware -->
+    <section id="hardware" class="section">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">Hands-on</p>
+          <h2>Hardware repair &amp; refurbishing</h2>
+          <p class="muted">Laptops I've diagnosed, repaired and set up. Some are for sale: <a href="mailto:johnjenyjeyaraj@gmail.com?subject=Laptop">email me</a> if one interests you (prices negotiable).</p>
+        </header>
+        <div id="hardware-grid" class="hw-grid"></div>
+      </div>
+    </section>
+  </main>
 
-			    </ul>
-                        </div>
-                        <p>
-                            <b>
-                                HP Envy x360-13ay0021nf - No longer available! Sorry!
-                            </b>
-                        </p>
-                        <div class="info">
-                            <ul>
-				<li><strong>Processor:</strong> AMD Ryzen 4700U</li>
-				<li><strong>RAM:</strong> 16GB</li>
-				<li><strong>Storage:</strong> 512GB SSD (NVMe)</li>
-				<li><strong>Graphics:</strong> Radeon Integrated Graphics</li>
-				<li><strong>Display:</strong> 13.3" FHB+ (1920 x 1080) - touchscreen</li>
-				<li><strong>Ports:</strong> Micro SD card reader, USB-C, USB (2x), headphone jack</li>
-				<li><strong>Weight:</strong> 1.32kg</li>
-				<li><strong>Operating System:</strong> Windows 11 Home and Ubuntu 22.04.4 LTS</li>
-				<li><strong>Pack Office:</strong> yes</li>
-				<li><strong>Accessories:</strong> Original charger, carrying case, mouse, and stylus</li>
-				<li><strong>Condition:</strong> Good</li>
-				<li><strong>Final Price:</strong> €500</li>
-			    </ul>
-                        </div>
-                        <p>
-                            <b>
-                                Dell Latitude E5430 - No longer available! Sorry!
-                            </b>
-                        </p>
-                        <div class="info">
-                            <ul>
-				<li><strong>Processor:</strong> Intel Core i5-3340M</li>
-				<li><strong>RAM:</strong> 4GB</li>
-				<li><strong>Storage:</strong> 256GB SSD (SATA)</li>
-				<li><strong>Graphics:</strong> Intel Integrated Graphics</li>
-				<li><strong>Display:</strong> 14.1" HD - LED (1600 x 900)</li>
-				<li><strong>Ports:</strong> USB (2x), VGA HD-15, HDMI, SD Card Reader, ethernet, headphone jack</li>
-				<li><strong>Weight:</strong> 2.04kg</li>
-				<li><strong>Operating System:</strong> Windows 11 Home</li>
-				<li><strong>Pack Office:</strong> yes</li>
-				<li><strong>Accessories:</strong> Original charger and carrying case</li>
-				<li><strong>Condition:</strong> Poor</li>
-				<li><strong>Final Price:</strong> €125</li>
-			    </ul>
-                        </div>
-                        <p>
-                            <b>
-                                ACER Nitro AN515-57 - No longer available! Sorry!
-                            </b>
-                        </p>
-                        <div class="info">
-                            <ul>
-				<li><strong>Processor:</strong> Intel Core i5-11400H</li>
-				<li><strong>RAM:</strong> 16 GB</li>
-				<li><strong>Storage:</strong> 512GB SSD (NVMe)</li>
-				<li><strong>Graphics:</strong> Geforce RTX 3050</li>
-				<li><strong>Display:</strong> 15.6" FHD+ (1920 x 1080), IPS</li>
-				<li><strong>Ports:</strong> HDMI, USB (x3), USB-C, ethernet, headphone jack</li>
-				<li><strong>Weight:</strong> 2.2kg</li>
-				<li><strong>Operating System:</strong> Windows 11 Home and Ubuntu 22.04.4 LTS</li>
-				<li><strong>Pack Office:</strong> yes</li>
-				<li><strong>Accessories:</strong> Headset, mouse, original charger and carrying case</li>
-				<li><strong>Condition:</strong> Good</li>
-				<li><strong>Final Price:</strong> £800</li>
-			    </ul>
-                        </div>
+  <footer id="contact" class="footer">
+    <div class="wrap footer-inner">
+      <div>
+        <h2>Let's talk</h2>
+        <p class="muted">Internship offers, questions about a project, or one of the laptops: get in touch.</p>
+      </div>
+      <div class="footer-links">
+        <a class="btn primary" href="mailto:johnjenyjeyaraj@gmail.com">johnjenyjeyaraj@gmail.com</a>
+        <a class="btn" href="https://www.linkedin.com/in/jmjj/">LinkedIn</a>
+        <a class="btn" href="https://github.com/JMJJ-projects">GitHub</a>
+      </div>
+    </div>
+    <p class="wrap copyright">© <span id="year"></span> John-Michael Jeny Jeyaraj</p>
+  </footer>
 
-                    </div>
-                    <div class="col-md-6" id="work_right">
-                        <br style="line-height:22;">
-                        <div class="owl-demo"> 
-				<div class="owl-carousel owl-theme">
-                            		<div class="item">
-                                		<img class="img-responsive img-rabbit" src="assets/images/HP_Elitebook.jpg" alt="HP Elitebook">
-                            		</div>
-                           		<div class="item">
-                               			<img class="img-responsive img-rabbit" src="assets/images/Dell_Latitude3.jpg" alt="Dell Latitude 3">
-                            		</div>
-                            		<div class="item">
-                             		   <img class="img-responsive img-rabbit" src="assets/images/Dell_Latitude2.jpg" alt="Dell Latitude 2">
-                            		</div>
-                            		<div class="item">
-                            		    <img class="img-responsive img-rabbit" src="assets/images/HP_ENVYx360.jpg" alt="HP ENVY x360">
-                            		</div>
-                            		<div class="item">
-                             		   <img class="img-responsive img-rabbit" src="assets/images/Dell_Latitude1.jpg" alt="Dell Latitude 1">
-                            		</div>
-                           		<div class="item">
-                            		    <img class="img-responsive img-rabbit" src="assets/images/Acer_Nitro15.jpg" alt ="ACER Nitro5">
-                            		</div>
-				</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Work ends here -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
-        </script>
-        <script src="assets/js/bootstrap.min.js">
-        </script>
-        <script src="assets/js/script.js">
-        </script>
-    </body>
+  <dialog id="project-dialog" aria-labelledby="dlg-title">
+    <form method="dialog"><button class="close" aria-label="Close">×</button></form>
+    <div id="dlg-body"></div>
+  </dialog>
 
+  <script src="assets/js/projects.js"></script>
+  <script src="assets/js/site.js"></script>
+</body>
 </html>

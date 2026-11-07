@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduMind — démo</title>
+<style>
+  :root { --ink:#1f1235; --muted:#5b5570; --accent:#7c3aed; --bg:#f6f4fb; --card:#fff; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; background:var(--bg); color:var(--ink); }
+  main { max-width:960px; margin:0 auto; padding:64px 16px; }
+  h1 { font-size:2.4rem; margin:0 0 .25rem; }
+  .lead { color:var(--muted); max-width:640px; line-height:1.6; }
+  .roles { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin:40px 0; }
+  a.role { display:block; background:var(--card); border-radius:14px; padding:24px; text-decoration:none; color:inherit;
+           border:1px solid #e6e1f2; transition:transform .15s, box-shadow .15s; }
+  a.role:hover { transform:translateY(-3px); box-shadow:0 10px 30px rgba(124,58,237,.12); }
+  .role h2 { margin:.2rem 0 .5rem; font-size:1.2rem; }
+  .role p { margin:0; color:var(--muted); font-size:.95rem; line-height:1.5; }
+  .tag { font-size:.75rem; font-weight:600; letter-spacing:.05em; text-transform:uppercase; color:var(--accent); }
+  .hint { background:#efe9fd; border-radius:10px; padding:14px 16px; font-size:.9rem; color:var(--muted); }
+  code { background:#fff; padding:1px 6px; border-radius:4px; }
+  footer { margin-top:40px; font-size:.9rem; color:var(--muted); }
+  footer a { color:var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <span class="tag">Projet de génie logiciel · Licence 3 · 2025</span>
+  <h1>EduMind</h1>
+  <p class="lead">Prototype d'une plateforme universitaire de gestion des notes et des examens.
+    Chaque rôle dispose de sa propre interface. Choisissez un espace pour l'explorer.</p>
+
+  <div class="roles">
+    <a class="role" href="etudiant/">
+      <span class="tag">Espace</span><h2>Étudiant</h2>
+      <p>Examens à venir, QCM en ligne avec détection de changement d'onglet, notes, rapport PDF avec graphique, messagerie.</p>
+    </a>
+    <a class="role" href="enseignant/">
+      <span class="tag">Espace</span><h2>Enseignant</h2>
+      <p>Saisie et modification des notes, commentaires, statistiques du groupe.</p>
+    </a>
+    <a class="role" href="admin/">
+      <span class="tag">Espace</span><h2>Administration</h2>
+      <p>Tableau de bord et gestion des comptes enseignants et étudiants.</p>
+    </a>
+  </div>
+
+  <p class="hint">Démo : dans l'espace étudiant, connectez-vous avec l'identifiant <code>1220001</code> et n'importe quel mot de passe.
+    Les données sont fictives et l'authentification est simulée côté navigateur : c'est une maquette fonctionnelle, pas un système en production.</p>
+
+  <footer>Documentation : <a href="docs/rapport-genie-logiciel.pdf">rapport (cas d'utilisation, UML, sprints)</a> ·
+    <a href="docs/presentation.pdf">présentation</a> · <a href="https://github.com/JMJJ-projects/edumind">code source</a></footer>
+</main>
+</body>
+</html>
