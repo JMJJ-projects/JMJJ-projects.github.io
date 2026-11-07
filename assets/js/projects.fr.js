@@ -21,9 +21,22 @@ window.PORTFOLIO_FR = {
     "Report": "Rapport",
     "Diagram": "Schéma",
     "Play": "Jouer",
+    "Poster": "Poster",
   },
 
   projects: {
+    "cve-triage": {
+      subtitle: "Agent LLM de triage de vulnérabilités",
+      context: "Projet personnel · seul",
+      summary:
+        "Un agent LangGraph qui prend un identifiant CVE, une description de vulnérabilité ou un extrait de code et renvoie une décision de triage structurée (sévérité, orientation, correctif conseillé). Les données NVD priment sur les suppositions du LLM, l'entrée non fiable n'est jamais exécutée, et tout fonctionne hors ligne.",
+      highlights: [
+        "Graphe de 8 nœuds : classification de l'entrée → enrichissement NVD → extraction par LLM → sévérité → alerte, revue humaine ou archivage",
+        "Sûr par conception : une CVE citée peut augmenter la sévérité mais jamais la baisser, le niveau MEDIUM part en revue humaine, et toute erreur aboutit à une revue",
+        "Protégé contre l'injection de prompt : l'entrée est traitée comme une donnée non fiable, rien n'est exécuté, le SQL est paramétré",
+        "177 tests, ruff + mypy --strict en intégration continue, et une évaluation honnête sur 35 cas étiquetés (80 % d'orientations correctes, toutes les erreurs étant des sur-escalades)",
+      ],
+    },
     stockagecloud: {
       subtitle: "Stockage cloud personnel chiffré",
       context: "Projet personnel · seul",

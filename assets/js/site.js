@@ -67,8 +67,10 @@
       .map(view)
       .map(
         (p) => `
-        <article class="feature">
-          <div class="feature-media"><img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" width="1200" height="700"></div>
+        <article class="feature${p.tall ? " tall" : ""}">
+          <div class="feature-media">${p.tall && p.links.length
+            ? `<a href="${esc(p.links[0].url)}" target="_blank" rel="noopener" title="${esc(p.links[0].label)}"><img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy"></a>`
+            : `<img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" width="1200" height="700">`}</div>
           <div class="feature-body">
             <span class="meta">${meta(p)}</span>
             <h3>${esc(p.title)}</h3>
@@ -104,7 +106,7 @@
         (p) => `
         <button class="card" data-id="${esc(p.id)}" data-cats="${esc(p.categories.join(" "))}" data-featured="${!!p.featured}" aria-haspopup="dialog">
           ${p.image
-            ? `<div class="card-media"><img src="${esc(p.image)}" alt="" loading="lazy"></div>`
+            ? `<div class="card-media${p.tall ? " top" : ""}"><img src="${esc(p.image)}" alt="" loading="lazy"></div>`
             : `<div class="card-media placeholder"><span>${esc(p.subtitle || p.title)}</span></div>`}
           <div class="card-body">
             <span class="meta">${meta(p)}</span>
