@@ -1,7 +1,7 @@
 // French versions of the texts in projects.js, keyed by project id.
 // Any field missing here falls back to the English text.
 window.PORTFOLIO_FR = {
-  status: "Disponible pour un stage de 6 mois à partir de janvier 2027 · IA, sécurité, logiciel",
+  status: "Disponible pour un stage de 6 mois à partir de février 2027 · IA, sécurité, logiciel",
 
   categories: {
     all: "Tous",

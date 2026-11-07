@@ -1,7 +1,7 @@
 // All portfolio content lives here. To add a project, copy one object and edit it.
 // categories: security | ai | systems | research | web
 window.PORTFOLIO = {
-  status: "Open to 6-month internships from January 2027 · AI, security, software",
+  status: "Open to 6-month internships from February 2027 · AI, security, software",
 
   categories: [
     { id: "all", label: "All" },
