@@ -23,6 +23,8 @@ window.PORTFOLIO_FR = {
     "Play": "Jouer",
     "Poster": "Poster",
     "Benchmark results": "Résultats du benchmark",
+    "Demo PR": "PR de démo",
+    "Evaluation": "Évaluation",
   },
 
   projects: {
@@ -40,15 +42,15 @@ window.PORTFOLIO_FR = {
       ],
     },
     "cve-triage": {
-      subtitle: "Agent LLM de triage de vulnérabilités",
+      subtitle: "Que faut-il corriger en premier ?",
       context: "Projet personnel · seul",
       summary:
-        "Un agent LangGraph qui prend un identifiant CVE, une description de vulnérabilité ou un extrait de code et renvoie une décision de triage structurée (sévérité, orientation, correctif conseillé). Les données NVD priment sur les suppositions du LLM, l'entrée non fiable n'est jamais exécutée, et tout fonctionne hors ligne.",
+        "Analyse un identifiant CVE, un rapport de vulnérabilité, un extrait de code ou tout un fichier de dépendances, et classe chaque problème par priorité : CISA KEV (exploitée), EPSS (probabilité d'exploitation) et sévérité CVSS, combinés par des règles fixes, jamais par le LLM. Fonctionne hors ligne, en CLI, comme serveur MCP, et comme GitHub Action qui commente les pull requests.",
       highlights: [
-        "Graphe de 8 nœuds : classification de l'entrée → enrichissement NVD → extraction par LLM → sévérité → alerte, revue humaine ou archivage",
-        "Sûr par conception : une CVE citée peut augmenter la sévérité mais jamais la baisser, le niveau MEDIUM part en revue humaine, et toute erreur aboutit à une revue",
-        "Protégé contre l'injection de prompt : l'entrée est traitée comme une donnée non fiable, rien n'est exécuté, le SQL est paramétré",
-        "177 tests, ruff + mypy --strict en intégration continue, et une évaluation honnête sur 35 cas étiquetés (80 % d'orientations correctes, toutes les erreurs étant des sur-escalades)",
+        "Analyse requirements.txt, les lockfiles npm et les SBOM via OSV.dev ; les conseils de mise à jour viennent uniquement des versions corrigées d'OSV, jamais du modèle",
+        "Évalué sur 300 CVE récentes face à des baselines triviales : gpt-oss-120b tombe à un niveau de sévérité près dans 86 % des cas, un modèle local 3B dans 69 %, erreurs présentées sans fard",
+        "Constat : seules 3 de ces 300 CVE récentes atteignent un EPSS de 0,10 ; pour les vulnérabilités récentes, la priorité vient donc de KEV et de la sévérité",
+        "Résiste à l'injection de prompt, n'exécute jamais le code analysé ; 665 tests, intégration continue, et une vraie PR de démonstration montrant le commentaire de l'Action",
       ],
     },
     stockagecloud: {
