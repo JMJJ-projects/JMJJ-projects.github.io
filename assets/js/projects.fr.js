@@ -25,20 +25,22 @@ window.PORTFOLIO_FR = {
     "Benchmark results": "Résultats du benchmark",
     "Demo PR": "PR de démo",
     "Evaluation": "Évaluation",
+    "Results": "Résultats",
+    "Design notes": "Notes de conception",
   },
 
   projects: {
     "sim-agent": {
       title: "Agent de simulation",
-      subtitle: "Langage naturel → code de simulation exécuté en sandbox",
+      subtitle: "Qu'est-ce qui aide vraiment un petit modèle local ?",
       context: "Projet personnel · seul",
       summary:
-        "On pose une question sur une simulation de transport de particules en langage naturel : l'agent écrit le code Python, l'exécute dans une sandbox Docker verrouillée, et le corrige à partir de l'erreur quand il échoue. Fonctionne avec de petits modèles locaux (4 Go de VRAM) ou hébergés, et s'utilise comme serveur MCP.",
+        "On pose une question sur une simulation de transport de particules en langage naturel : l'agent écrit le code Python, l'exécute dans une sandbox Docker verrouillée, le corrige quand il échoue, puis vérifie la réponse face à la demande et à une trace enregistrée par le simulateur lui-même. Fonctionne avec de petits modèles locaux (4 Go de VRAM) ou hébergés, et s'utilise comme serveur MCP.",
       highlights: [
-        "Benchmark sur 36 tâches : la boucle de correction fait passer un modèle local 3B de 7/36 à 20/36, une ligne de prompt en plus atteint 23/36 du premier coup, et gpt-oss-120b résout 36/36",
-        "Deux couches de sécurité : liste blanche statique sur le code généré, puis sandbox Docker sans réseau, en lecture seule et avec limites de ressources, prouvée par 16 tests d'isolation",
-        "Serveur MCP exposant le simulateur, la sandbox et l'agent comme outils, testé avec un vrai client MCP",
-        "Simulateur Monte Carlo basé sur les données d'atténuation du NIST et validé par la loi de Beer–Lambert ; 404 tests et intégration continue sous Linux",
+        "Évalué sur 60 tâches, dont 24 mises de côté et figées avant l'écriture du vérificateur, sur plusieurs graines, avec intervalles de confiance à 95 % et tests appariés",
+        "Le vérificateur est précis (35 mauvaises réponses détectées sur les tâches réservées, 1 fausse alerte), mais le modèle 3B arrive rarement à corriger ce qu'il signale : +3,3 points au final",
+        "La boucle de correction apporte 11 à 17 points ; un modèle 7B tournant à moitié sur le CPU dépasse le 3B de 17 à 22 points ; Q8 contre Q4 : aucune différence mesurable ; une règle de prompt que j'avais ajoutée a causé de faux refus, elle a donc été retirée",
+        "Sandbox Docker sans réseau, en lecture seule et avec limites de ressources, derrière une liste blanche statique, chacune prouvée par des tests ; 727 tests et intégration continue",
       ],
     },
     "cve-triage": {
